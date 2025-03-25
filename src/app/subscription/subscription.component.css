@@ -1,20 +1,86 @@
+/* 
 .subscription-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  mat-card {
-    width: 400px;
-    padding: 20px;
-  }
-  
-  mat-form-field {
-    width: 100%;
-    margin-bottom: 16px;
-  }
-  
-  button {
-    width: 100%;
-  }
-  
+  max-width: 50%;
+  margin: 20px auto;
+}
+
+mat-card {
+  padding: 20px;
+}
+
+.full-width {
+  width: 70%;
+}
+.half-width{
+  margin: 10px;
+}
+.warning {
+  color: red;
+  font-weight: bold;
+}
+
+.lock-warning {
+  color: orange;
+  font-weight: bold;
+}
+
+mat-table {
+  width: 50%;
+  margin-top: 15px;
+}
+ */
+
+
+ .subscription-container {
+  max-width: 90%;
+  margin: 20px auto;
+}
+
+mat-card {
+  padding: 20px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.half-width {
+ 
+  flex: 1; /* Ensure fields take equal space */
+  min-width: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.warning {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
+.lock-warning {
+  color: orange;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* .form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+} */
+.form-actions {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the left */
+  gap: 12px; /* Adds space between buttons */
+}
+
+button {
+  min-width: 100px; /* Ensures buttons have a uniform width */
+}
+

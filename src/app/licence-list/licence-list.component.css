@@ -1,0 +1,23 @@
+.table-container {
+    width: 100%;
+  }
+  
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    white-space: nowrap;
+  }
+  .button-container {
+    display: flex;
+    justify-content: flex-end; 
+    width: 100%; 
+    
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  

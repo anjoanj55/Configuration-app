@@ -1,0 +1,63 @@
+<div class="container">
+    <h2>Licence List</h2>
+    <div class="button-container">
+        <button mat-raised-button color="primary" (click)="navigateToAddLicence()">Add Licence</button>
+      </div>
+      
+    
+    <table mat-table [dataSource]="licenceList" class="mat-elevation-z8">
+  
+        <!-- License Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Licence Name </th>
+          <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+        </ng-container>
+      
+        <!-- License Type Column -->
+        <ng-container matColumnDef="licenseType">
+          <th mat-header-cell *matHeaderCellDef> License Type </th>
+          <td mat-cell *matCellDef="let element"> {{ element.licenseType }} </td>
+        </ng-container>
+      
+        <!-- License Options Column -->
+        <ng-container matColumnDef="licenseOptions">
+          <th mat-header-cell *matHeaderCellDef> License Options </th>
+          <td mat-cell *matCellDef="let element"> {{ element.licenseOptions }} </td>
+        </ng-container>
+      
+        <!-- Start Date Column -->
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef> Start Date </th>
+          <td mat-cell *matCellDef="let element"> {{ element.startDate }} </td>
+        </ng-container>
+      
+        <!-- Expiry Date Column -->
+        <ng-container matColumnDef="expiryDate">
+          <th mat-header-cell *matHeaderCellDef> Expiry Date </th>
+          <td mat-cell *matCellDef="let element"> {{ element.expiryDate }} </td>
+        </ng-container>
+      
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
+        </ng-container>
+      
+        <!-- Delete Column -->
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="warn" (click)="deleteLicense(element.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      
+        <!-- Table Headers and Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+      </table>
+      
+  </div>
+  
