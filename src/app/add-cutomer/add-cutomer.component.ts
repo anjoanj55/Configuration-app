@@ -10,7 +10,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
 @Component({
   selector: 'app-add-customer',
   standalone: true,
@@ -24,63 +28,136 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
-    
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule // ✅ Add this
   ],
 })
 export class AddCustomerComponent {
   customerForm: FormGroup;
+  customer: any = {};
 
-  constructor(private fb: FormBuilder,private router: Router) {
+  constructor(private fb: FormBuilder,private snackBar: MatSnackBar, private router: Router, private http: HttpClient) {
     this.customerForm = this.fb.group({
-      companyName: ['', [Validators.required, Validators.minLength(2)]],
-      address: ['', [Validators.required, Validators.minLength(5)]],
-      phone: ['', [
-        Validators.required, 
-        Validators.pattern(/^[0-9]{10}$/)
-      ]],
+      licenseType: ['', Validators.required],
+      custName: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
       email: ['', [Validators.required, Validators.email]],
-      location: ['', [Validators.required]],
-      product: ['', [Validators.required]],
-      startDate: ['', [Validators.required]],
-      endDate: ['', [Validators.required]],
-      pincode: ['', [
-        Validators.required, 
-        Validators.pattern(/^[0-9]{6}$/)
-      ]],
-      ccc: ['', [Validators.required]]
-    }, { validators: this.dateRangeValidator });
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      country: ['', Validators.required],
+      zip: ['', Validators.required],
+      customerType: ['', Validators.required],
+      cAbbreviation: [''],
+      contactFPerson: ['', Validators.required],
+      contactFEmail: ['', [Validators.required, Validators.email]],
+      contactSPerson: ['', Validators.required],
+      contactSEmail: ['', [Validators.required, Validators.email]],
+      notes: [''],
+      document1: [''],
+      document2: [''],
+      document3: [''],
+      document4: [''],
+      document5: [''],
+      // createdDate: ['', Validators.required],
+      createdBy: [''],
+      // updatedDate: ['', Validators.required],
+      updatedBy: [''],
+      status: ['']
+    });
   }
 
-  // Custom validator to ensure end date is after start date
-  dateRangeValidator(group: FormGroup) {
-    const startDate = group.get('startDate')?.value;
-    const endDate = group.get('endDate')?.value;
-    
-    return startDate && endDate && new Date(startDate) < new Date(endDate) 
-      ? null 
-      : { dateRange: true };
-  }
-  goBackToCustomers() {
-    this.router.navigate(['/customers']); // Redirects to CustomerComponent
-  }
+//   onSubmit() {
+//     console.log("onSubmit() triggered!"); // Debugging
 
-  onSubmit() {
-    if (this.customerForm.valid) {
-      console.log(this.customerForm.value);
-      // Add your submission logic here
-    } else {
-      // Mark all fields as touched to show validation errors
+//     if (this.customerForm.valid) {
+//         this.customer = this.customerForm.value;
+//         const requestData = {
+//             jsonFileparams: JSON.stringify([this.customer]),
+//             spname: "[dbo].[sp_Insert_Customer]"
+//         };
+
+//         console.log("Sending Data to API:", requestData); // Debugging
+
+//         const apiUrl = 'https://localhost:44320/api/Service/GENERICSQLEXEC';
+
+//         this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
+//             response => {
+//                 console.log("API Response:", response);
+
+//                 // Check if response is "success"
+//                 if (response.trim().toLowerCase() === "success") {
+//                     alert("Customer added successfully!");
+//                     this.onReset();
+//                 } else {
+//                     alert("Unexpected response: " + response);
+//                 }
+//             },
+//             error => {
+//                 console.error("API Error:", error);
+//                 alert("Error adding customer.");
+//             }
+//         );
+//     } else {
+//         console.log("Form is invalid:", this.customerForm.value);
+//         Object.keys(this.customerForm.controls).forEach(key => {
+//             const control = this.customerForm.get(key);
+//             control?.markAsTouched();
+//         });
+//     }
+// }
+onSubmit() {
+  console.log("onSubmit() triggered!"); // Debugging
+
+  if (this.customerForm.valid) {
+      this.customer = this.customerForm.value;
+      const requestData = {
+          jsonFileparams: JSON.stringify([this.customer]),
+          spname: "[dbo].[sp_Insert_Customer]"
+      };
+
+      console.log("Sending Data to API:", requestData); // Debugging
+
+      const apiUrl = 'https://localhost:44320/api/Service/GENERICSQLEXEC';
+
+      this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
+          response => {
+              console.log("API Response:", response);
+
+              // Check if response is "success"
+              if (response.trim().toLowerCase() === "success") {
+                  alert("Customer added successfully!");
+                  this.customerForm.reset(); // Clear the form
+              } else {
+                  alert("Unexpected response: " + response);
+              }
+          },
+          error => {
+              console.error("API Error:", error);
+              alert("Error adding customer.");
+          }
+      );
+  } else {
+      console.log("Form is invalid:", this.customerForm.value);
       Object.keys(this.customerForm.controls).forEach(key => {
-        const control = this.customerForm.get(key);
-        control?.markAsTouched();
+          const control = this.customerForm.get(key);
+          control?.markAsTouched();
       });
-    }
+
+      alert("Please correct the errors in the form.");
   }
+}
+
+
 
   onReset() {
     this.customerForm.reset();
+    this.customer = {}; // Reset customer object
+  }
+
+  goBackToCustomers() {
+    this.router.navigate(['/customers']);
   }
 }

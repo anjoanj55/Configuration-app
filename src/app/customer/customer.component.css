@@ -37,7 +37,7 @@
 
 .button-container {
     display: flex; 
-    gap: 1px; 
+    gap: 4px; 
     justify-content: flex-end; 
     margin-bottom: 15px; 
   }
