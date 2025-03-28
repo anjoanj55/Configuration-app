@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
  
 import { MsalService } from '@azure/msal-angular';
 import { MatIconModule } from '@angular/material/icon';
+import { DataShareService } from '../data-share.service'; 
 
 
 @Component({
@@ -15,7 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 export class MainPageComponent {
   isLoggedIn :boolean  =true;
   loggedInUser:any =''
- constructor(private router: Router,private authService: MsalService)  {
+  ipforapi:any=''
+ constructor(private router: Router,private authService: MsalService,private Datashare: DataShareService)  {
   }
   
   customernavigate(){
@@ -35,8 +37,10 @@ export class MainPageComponent {
    CustomerAlertnotification(){
     this.router.navigate(['/CustomerAlert']);
    }
-
-
+   
+   EventLognavigation(){
+    this.router.navigate(['/EventLog']);
+   }
    logout() {
  
     this.authService.logout().subscribe({
@@ -64,6 +68,8 @@ export class MainPageComponent {
   }
 
   ngOnInit(): void {
+    this.ipforapi  = this.Datashare.getipdetails();
+    console.log('ipcheck:', this.ipforapi);
     this.authService.instance.initialize().then(() => {
  
       // MSAL is initialized

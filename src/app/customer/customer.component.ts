@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MsalService } from '@azure/msal-angular';
+import { DataShareService } from '../data-share.service'; 
 
 @Component({
   selector: 'app-customer',
@@ -29,6 +30,7 @@ import { MsalService } from '@azure/msal-angular';
 })
 export class CustomerComponent {
   searchText: string = '';
+  ipforapi:any=''
   customers: any[] = [];
   displayedColumns: string[] = ['id', 'name', 'phone', 'address', 'email', 'actions'];
   apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/SQLLOADEXEC';
@@ -38,10 +40,11 @@ export class CustomerComponent {
   constructor(
     private snackBar: MatSnackBar,
     private router: Router,
-    private http: HttpClient,private authService: MsalService
+    private http: HttpClient,private authService: MsalService,private Datashare: DataShareService
   ) {}
 
   ngOnInit(): void {
+    this.ipforapi  = this.Datashare.getipdetails();
     this.loadCustomers();
 
     this.authService.instance.initialize().then(() => {

@@ -1,0 +1,80 @@
+
+
+   <div class="container">
+    <h2 class="heading">Event Logs</h2>
+    <hr class="divider">
+    <div class="search-bar">
+        
+      <input type="text" placeholder="Search Events..." [(ngModel)]="searchText">
+      <mat-icon>search</mat-icon>
+    </div>
+    <div class="button-container">
+        <button mat-button color="primary" (click)="exportToExcel()">
+            <mat-icon>file_download</mat-icon>
+            EXPORT
+          </button>
+        <!-- <button mat-button color="primary">
+          <mat-icon>file_upload</mat-icon> IMPORT
+        </button> -->
+    
+    </div>
+  
+    <table mat-table [dataSource]="eventlogs" class="mat-elevation-z8">
+      <ng-container matColumnDef="EventID">
+          <th mat-header-cell *matHeaderCellDef>Event ID</th>
+          <td mat-cell *matCellDef="let events">
+            <input *ngIf="events.isNew" [(ngModel)]="events.EventID" type="number" placeholder="Enter eventsType">
+            <span *ngIf="!events.isNew">{{ events.EventID }}</span>
+          </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="EventType">
+        <th mat-header-cell *matHeaderCellDef>Event Type</th>
+        <td mat-cell *matCellDef="let events">
+          <input *ngIf="events.isNew" [(ngModel)]="events.EventType" type="number" placeholder="Enter LicenseKey">
+          <span *ngIf="!events.isNew">{{ events.EventType }}</span>
+        </td>
+    </ng-container>
+  
+      
+      <ng-container matColumnDef="EventDetails">
+        <th mat-header-cell *matHeaderCellDef>
+            Event Details</th>
+        <td mat-cell *matCellDef="let events">
+          <input *ngIf="events.isNew" [(ngModel)]="events.EventDetails" placeholder="Enter company name">
+          <span *ngIf="!events.isNew">{{ events.EventDetails }}</span>
+        </td>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="EventDate">
+        <th mat-header-cell *matHeaderCellDef>Event Date
+        </th>
+        <td mat-cell *matCellDef="let events">
+          <input *ngIf="events.isNew" [(ngModel)]="events.EventDate" placeholder="Enter phone">
+          <span *ngIf="!events.isNew">{{ events.EventDate }}</span>
+        </td>
+      </ng-container>
+  
+     
+
+    
+
+      <ng-container matColumnDef="IPAddress">
+        <th mat-header-cell *matHeaderCellDef>IPAddress</th>
+        <td mat-cell *matCellDef="let events">
+          <input *ngIf="events.isNew" [(ngModel)]="events.IPAddress" placeholder="Enter email">
+          <span *ngIf="!events.isNew">{{ events.IPAddress }}</span>
+        </td>
+      </ng-container>
+  
+      
+    
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    </table>
+  </div>
+  

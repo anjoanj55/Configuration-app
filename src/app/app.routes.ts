@@ -23,7 +23,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import {LicenceListComponent} from './licence-list/licence-list.component'
 import {SubscriptionComponent } from './subscription/subscription.component'
 import {CustomerAlertComponent} from './customer-alert/customer-alert.component'
-
+import { DataShareService } from './data-share.service';
+import {EventLogComponent} from './event-log/event-log.component'
 const MSAL_INSTANCE_FACTORY = () => {
   return new PublicClientApplication({
     auth: {
@@ -43,7 +44,8 @@ export const routes: Routes = [
    {path:'add-cutomer',component: AddCustomerComponent },
    {path:'LicenceList',component:LicenceListComponent},
    {path:'subscription',component:SubscriptionComponent},
-   {path:'CustomerAlert',component:CustomerAlertComponent}
+   {path:'CustomerAlert',component:CustomerAlertComponent},
+   {path:'EventLog',component:EventLogComponent}
 
 ];
 

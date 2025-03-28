@@ -5,8 +5,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { MsalService } from '@azure/msal-angular';
 import { Injectable } from '@angular/core';
 //import { SmsClient } from '@azure/communication-sms';
- 
- 
+import { DataShareService } from '../data-share.service'; 
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit{
    
     /*  private smsClient: SmsClient;*/
  
-    constructor(private router: Router ,private http: HttpClient, private authService: MsalService) {
+    constructor(private router: Router ,private http: HttpClient, private authService: MsalService, private Datashare: DataShareService) {
  
       /*  this.smsClient = new SmsClient('YOUR_ACS_CONNECTION_STRING');*/
  
@@ -234,6 +234,8 @@ export class LoginComponent implements OnInit{
             // Handle successful login
  
             this.router.navigate(['mainpage']);
+      
+
  
           },
  
@@ -244,9 +246,9 @@ export class LoginComponent implements OnInit{
     }
  
     logindata(): void {
- 
+   
       this.router.navigate(['mainpage']);
- 
+     
     }
    
     userdata(username: string, password: string) {

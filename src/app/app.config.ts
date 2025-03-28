@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MsalModule } from '@azure/msal-angular'; // Ensure MSAL Module is imported correctly
 import { PublicClientApplication, InteractionType } from '@azure/msal-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { DataShareService } from './data-share.service';
 
 // MSAL instance factory
 const MSAL_INSTANCE_FACTORY = () => {
@@ -28,6 +29,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       MatIconModule,
       HttpClientModule,
+      DataShareService,
       MsalModule.forRoot(
         MSAL_INSTANCE_FACTORY(),
         {
