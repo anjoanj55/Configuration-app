@@ -1,0 +1,86 @@
+<div class="container">
+    <h2 class="heading">User limit and Locking</h2>
+    <hr class="divider">
+   
+    <div class="button-container">
+        <button mat-button color="primary" (click)="openAddDialog()">
+            <mat-icon>add</mat-icon> CREATE
+        </button>
+        <button mat-button color="primary">
+            <mat-icon>file_download</mat-icon> EXPORT
+        </button>
+        <button mat-button color="primary">
+            <mat-icon>file_upload</mat-icon> IMPORT
+        </button>
+    </div>
+   
+    <table mat-table [dataSource]="customers" class="mat-elevation-z8">
+        <!-- Customer Type Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Company Name</th>
+            <td mat-cell *matCellDef="let customer">
+                <input *ngIf="customer.isEditing" [(ngModel)]="customer.CustomerType" type="text" placeholder="Enter Customer Type">
+                <span *ngIf="!customer.isEditing">{{ customer.CustomerType }}</span>
+            </td>
+        </ng-container>
+   
+        <!-- Company Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>User ID</th>
+            <td mat-cell *matCellDef="let customer">
+                <input *ngIf="customer.isEditing" [(ngModel)]="customer.CustName" placeholder="Enter company name">
+                <span *ngIf="!customer.isEditing">{{ customer.CustName }}</span>
+            </td>
+        </ng-container>
+   
+        <!-- Phone Column -->
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>User Name</th>
+            <td mat-cell *matCellDef="let customer">
+                <input *ngIf="customer.isEditing" [(ngModel)]="customer.Phone" placeholder="Enter phone">
+                <span *ngIf="!customer.isEditing">{{ customer.Phone }}</span>
+            </td>
+        </ng-container>
+   
+        <!-- Address Column -->
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let customer">
+                <input *ngIf="customer.isEditing" [(ngModel)]="customer.Address" placeholder="Enter address">
+                <span *ngIf="!customer.isEditing">{{ customer.Address }}</span>
+            </td>
+        </ng-container>
+   
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let customer">
+                <input *ngIf="customer.isEditing" [(ngModel)]="customer.Email" placeholder="Enter email">
+                <span *ngIf="!customer.isEditing">{{ customer.Email }}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let customer">
+              <input placeholder="Enter email">
+              <span >{{ customer.Email }}</span>
+          </td>
+      </ng-container>
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let customer">
+                <button mat-icon-button color="primary" (click)="toggleEdit(customer)">
+                    <mat-icon>{{ customer.isEditing ? 'save' : 'edit' }}</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteCustomer(customer.CustID)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+   
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   
+    </table>
+  </div>

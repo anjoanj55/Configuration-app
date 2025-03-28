@@ -1,0 +1,122 @@
+<div class="logout-container" (click)="logout()">
+  <a href="#" class="logout-link">
+    <mat-icon>person</mat-icon>
+  </a>
+</div>
+
+
+<!-- Tile Container -->
+<div class="tile-container">
+    <div class="tile">
+      <a routerLink="/admin" class="tile-link">
+        <i class="material-icons">admin_panel_settings</i>
+        <p>Admin</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/dbconfig" class="tile-link">
+        <i class="material-icons">cloud</i>
+        <p>DB Config</p>
+      </a>
+    </div>
+  
+    <div class="tile" (click)="customernavigate()">
+      <a  class="tile-link">
+        <i class="material-icons">people</i>
+        <p>Customer</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/subscription" class="tile-link">
+        <i class="material-icons">subscriptions</i>
+        <p>Subscription</p>
+      </a>
+    </div>
+  
+    <div class="tile" (click)="licensenavigate()">
+      <a  class="tile-link">
+        <i class="material-icons">verified</i>
+        <p>License</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/crm" class="tile-link">
+        <i class="material-icons">assignment</i>
+        <p>CRM</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/access" class="tile-link">
+        <i class="material-icons">vpn_key</i>
+        <p>Access Grants</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/reports" class="tile-link">
+        <i class="material-icons">library_books</i>
+        <p>Reports</p>
+      </a>
+    </div>
+  
+    <div class="tile" (click)="CustomerAlertnotification()">
+      <a class="tile-link">
+        <i class="material-icons">notifications</i>
+        <p>Notifications</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/msal" class="tile-link">
+        <i class="material-icons">lock</i>
+        <p>MSAL</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/audit" class="tile-link">
+        <i class="material-icons">history</i>
+        <p>Audit Logs</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/event" class="tile-link">
+        <i class="material-icons">event</i>
+        <p>Event Logs</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/security" class="tile-link">
+        <i class="material-icons">security</i>
+        <p>Security Config</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/api" class="tile-link">
+        <i class="material-icons">api</i>
+        <p>API Gateway</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/Scaling" class="tile-link">
+        <i class="material-icons">home</i>
+        <p>Scaling</p>
+      </a>
+    </div>
+  
+    <div class="tile">
+      <a routerLink="/Billing" class="tile-link">
+        <i class="material-icons">receipt</i>
+        <p>Billing</p>
+      </a>
+    </div>
+  </div>
+  

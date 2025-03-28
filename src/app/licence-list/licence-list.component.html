@@ -1,0 +1,157 @@
+<!-- <div class="container">
+    <h2>Licence List</h2>
+    <div class="button-container">
+        <button mat-raised-button color="primary" (click)="navigateToAddLicence()">Add Licence</button>
+      </div>
+      
+    
+    <table mat-table [dataSource]="licenceList" class="mat-elevation-z8">
+  
+        
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Licence Name </th>
+          <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="licenseType">
+          <th mat-header-cell *matHeaderCellDef> License Type </th>
+          <td mat-cell *matCellDef="let element"> {{ element.licenseType }} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="licenseOptions">
+          <th mat-header-cell *matHeaderCellDef> License Options </th>
+          <td mat-cell *matCellDef="let element"> {{ element.licenseOptions }} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef> Start Date </th>
+          <td mat-cell *matCellDef="let element"> {{ element.startDate }} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="expiryDate">
+          <th mat-header-cell *matHeaderCellDef> Expiry Date </th>
+          <td mat-cell *matCellDef="let element"> {{ element.expiryDate }} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="warn" (click)="deleteLicense(element.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+      </table>
+      
+  </div>
+   -->
+
+
+
+
+   <div class="container">
+    <h2 class="heading">License Details</h2>
+    <hr class="divider">
+    <div class="search-bar">
+        
+      <input type="text" placeholder="Search License..." [(ngModel)]="searchText">
+      <mat-icon>search</mat-icon>
+    </div>
+    <div class="button-container">
+        <button mat-button color="primary" (click)="openAddDialog()">
+          <mat-icon>add</mat-icon> CREATE
+        </button>
+        <button mat-button color="primary">
+          <mat-icon>file_download</mat-icon> EXPORT
+        </button>
+        <button mat-button color="primary">
+          <mat-icon>file_upload</mat-icon> IMPORT
+        </button>
+        <button mat-button color="accent" (click)="navigateToSubscription()">
+          <mat-icon>subscriptions</mat-icon> Manage Subscription
+        </button>
+    </div>
+  
+    <table mat-table [dataSource]="Licences" class="mat-elevation-z8">
+    
+      
+      <ng-container matColumnDef="LicenseType">
+          <th mat-header-cell *matHeaderCellDef>License Type</th>
+          <td mat-cell *matCellDef="let Licence">
+            <input *ngIf="Licence.isNew" [(ngModel)]="Licence.LicenseType" type="number" placeholder="Enter LicenceType">
+            <span *ngIf="!Licence.isNew">{{ Licence.LicenseType }}</span>
+          </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="LicenseKey">
+        <th mat-header-cell *matHeaderCellDef>License Type</th>
+        <td mat-cell *matCellDef="let Licence">
+          <input *ngIf="Licence.isNew" [(ngModel)]="Licence.LicenseKey" type="number" placeholder="Enter LicenseKey">
+          <span *ngIf="!Licence.isNew">{{ Licence.LicenseKey }}</span>
+        </td>
+    </ng-container>
+  
+      
+      <ng-container matColumnDef="Pricing">
+        <th mat-header-cell *matHeaderCellDef>
+          Price</th>
+        <td mat-cell *matCellDef="let Licence">
+          <input *ngIf="Licence.isNew" [(ngModel)]="Licence.Pricing" placeholder="Enter company name">
+          <span *ngIf="!Licence.isNew">{{ Licence.Price }}</span>
+        </td>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="Renewaltype">
+        <th mat-header-cell *matHeaderCellDef>Renewal Type
+        </th>
+        <td mat-cell *matCellDef="let Licence">
+          <input *ngIf="Licence.isNew" [(ngModel)]="Licence.Renewaltype" placeholder="Enter phone">
+          <span *ngIf="!Licence.isNew">{{ Licence.Renewaltype }}</span>
+        </td>
+      </ng-container>
+  
+     
+
+      <ng-container matColumnDef="TrialPeriod_days">
+        <th mat-header-cell *matHeaderCellDef>Trial Period days</th>
+        <td mat-cell *matCellDef="let Licence">
+          <input *ngIf="Licence.isNew" [(ngModel)]="Licence.TrialPeriod_days" placeholder="Enter email">
+          <span *ngIf="!Licence.isNew">{{ Licence.TrialPeriod_days }}</span>
+        </td>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let Licence">
+          
+          <button mat-icon-button color="warn" (click)="deleteLicence(Licence.CustLicenseID)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    </table>
+  </div>
+  

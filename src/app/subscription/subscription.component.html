@@ -1,0 +1,282 @@
+<!-- <div class="subscription-container">
+  <mat-card>
+    <h2>Create License</h2>
+    <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>License Name</mat-label>
+          <input matInput formControlName="licenseName" placeholder="Enter license name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>License Key</mat-label>
+          <input matInput formControlName="licenseKey" placeholder="Enter license key">
+        </mat-form-field>
+      </div>
+
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Select License Type</mat-label>
+          <mat-select formControlName="licenseType">
+            <mat-option *ngFor="let type of licenseTypes" [value]="type">{{ type }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>License Options</mat-label>
+          <input matInput formControlName="licenseOptions" placeholder="Enter options">
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Start Date</mat-label>
+          <input matInput type="date" formControlName="startDate">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Expiry Date</mat-label>
+          <input matInput type="date" formControlName="expiryDate" (change)="checkExpiry()">
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Trial Period (Days)</mat-label>
+          <input matInput formControlName="trialPeriod" placeholder="Enter trial period (if any)">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Renewal Type</mat-label>
+          <mat-select formControlName="renewalType">
+            <mat-option *ngFor="let type of renewalTypes" [value]="type">{{ type }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" placeholder="Enter price">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email for Expiry Notification</mat-label>
+        <input matInput type="email" formControlName="expiryEmail">
+      </mat-form-field>
+
+      
+
+      <div *ngIf="isExpired" class="warning">
+        <p>Your license has expired. Please renew to continue using the service.</p>
+      </div>
+
+      <div *ngIf="isLocked" class="lock-warning">
+        <p>Your account is locked due to non-payment.</p>
+      </div>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="isLocked">Submit</button>
+    </form>
+  </mat-card>
+</div> 
+
+
+
+ -->
+
+
+
+
+
+
+
+<!-- <div class="subscription-container">
+  <mat-card>
+    <h2>Create License</h2>
+    <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-row">
+       
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>License Type</mat-label>
+          <input matInput formControlName="licenseType" placeholder="Enter license Type">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>License Key</mat-label>
+          <input matInput formControlName="licenseKey" placeholder="Enter license key">
+        </mat-form-field>
+      </div>
+
+      <div class="form-row"> -->
+        <!-- <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Payment Terms</mat-label>
+          <mat-select formControlName="paymentTerms">
+            <mat-option *ngFor="let term of paymentTerms" [value]="term">
+              {{ term }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>  -->
+        <!-- <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Payment Terms</mat-label>
+          <input matInput formControlName="paymentTerms" placeholder="Enter payment terms">
+        </mat-form-field>
+
+        
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Trial Period (Days)</mat-label>
+          <input matInput formControlName="trialPeriod" placeholder="Enter trial period (if any)">
+        </mat-form-field>
+
+        
+      </div>
+
+      
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="price" placeholder="Enter price">
+        </mat-form-field> -->
+        
+
+        <!-- <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Renewal Type</mat-label>
+          <mat-select formControlName="renewalType">
+            <mat-option *ngFor="let type of renewalTypes" [value]="type">
+              {{ type }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+        <!-- <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Renewal Type</mat-label>
+          <input matInput formControlName="renewalType" placeholder="Enter renewal type">
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Terms and Conditions</mat-label>
+          <textarea matInput formControlName="trialPeriod" placeholder="Enter Terms and Conditions" rows="4"></textarea>
+        </mat-form-field>
+      </div>
+      
+      
+
+      <div *ngIf="isExpired" class="warning">
+        <p>Your license has expired. Please renew to continue using the service.</p>
+      </div>
+
+      <div *ngIf="isLocked" class="lock-warning">
+        <p>Your account is locked due to non-payment.</p>
+      </div>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="isLocked">Submit</button>
+        <button mat-raised-button color="warn" type="button" (click)="onClear()">Clear</button>
+        
+      </div>
+    </form>
+  </mat-card>
+</div> 
+ -->
+
+
+
+
+ <div class="subscription-container">
+  <mat-card>
+    <h2>Create License</h2>
+    <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>License Type</mat-label>
+          <input matInput formControlName="License_Type" placeholder="Enter license type">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>License Key</mat-label>
+          <input matInput formControlName="LicenseKey" placeholder="Enter license key">
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <!-- <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Payment Terms</mat-label>
+          <input matInput formControlName="PaymentTerms" placeholder="Enter payment terms">
+        </mat-form-field> -->
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Payment Terms</mat-label>
+          <mat-select formControlName="PaymentTerms">
+            <mat-option value="">Select payment terms</mat-option>
+            <mat-option value="Net 30">One-time Payment</mat-option>
+            <mat-option value="Net 60">Recurring Payment</mat-option>
+            <mat-option value="Net 60">Free Plan</mat-option>
+            
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Trial Period (Days)</mat-label>
+          <input matInput formControlName="TrialPeriod_days" placeholder="Enter trial period (if any)">
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="Price" placeholder="Enter price">
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Renewal Type</mat-label>
+          <input matInput formControlName="Renewaltype" placeholder="Enter renewal type">
+        </mat-form-field> -->
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Renewal Type</mat-label>
+          <mat-select formControlName="Renewaltype">
+            <mat-option value="">Select renewal type</mat-option>
+            <mat-option value="Automatic">Automatic Renewal</mat-option>
+            <mat-option value="Manual">Manual Renewal</mat-option>
+            <mat-option value="None">No Renewal</mat-option>
+            <mat-option value="Custom">Custom Renewal</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Terms and Conditions</mat-label>
+          <textarea matInput formControlName="TermsandConditions" placeholder="Enter terms and conditions" rows="4"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="isExpired" class="warning">
+        <p>Your license has expired. Please renew to continue using the service.</p>
+      </div>
+
+      <div *ngIf="isLocked" class="lock-warning">
+        <p>Your account is locked due to non-payment.</p>
+      </div>
+      <div class="button-container">
+        <button mat-button color="primary" type="submit"  [disabled]="isLocked">
+          <mat-icon>save</mat-icon> Submit
+        </button>
+        <button mat-button color="primary" (click)="onClear()">
+          <mat-icon>refresh</mat-icon> Clear
+        </button>
+        <button mat-button color="primary" (click)="goBackTolicense()">
+          <mat-icon>arrow_back</mat-icon> Back
+        </button>
+      
+      </div>
+      <!-- <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="isLocked">Submit</button>
+        <button mat-raised-button color="warn" type="button" (click)="onClear()">Clear</button>
+      </div> -->
+    </form>
+  </mat-card>
+</div>
+
+

@@ -1,0 +1,113 @@
+<div class="registration-container">
+  <mat-card class="registration-card">
+    <mat-card-header>
+      <mat-card-title>Add Customer</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+        <div class="form-grid">
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>License Type</mat-label>
+              <input matInput formControlName="licenseType" placeholder="Enter license type">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Customer Name</mat-label>
+              <input matInput formControlName="custName" placeholder="Enter customer name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="address" placeholder="Enter full address">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input matInput formControlName="phone" placeholder="Enter phone number">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" placeholder="Enter email" type="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>City</mat-label>
+              <input matInput formControlName="city" placeholder="Enter city">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>State</mat-label>
+              <input matInput formControlName="state" placeholder="Enter state">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Country</mat-label>
+              <input matInput formControlName="country" placeholder="Enter country">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Zip</mat-label>
+              <input matInput formControlName="zip" placeholder="Enter zip code">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Customer Type</mat-label>
+              <input matInput formControlName="customerType" placeholder="Enter customer type">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Contact First Person</mat-label>
+              <input matInput formControlName="contactFPerson" placeholder="Enter first contact person">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Contact First Email</mat-label>
+              <input matInput formControlName="contactFEmail" placeholder="Enter first contact email">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Contact Second Person</mat-label>
+              <input matInput formControlName="contactSPerson" placeholder="Enter second contact person">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Contact Second Email</mat-label>
+              <input matInput formControlName="contactSEmail" placeholder="Enter second contact email">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row full-width">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Notes</mat-label>
+              <textarea matInput formControlName="notes" placeholder="Enter notes"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button mat-button color="primary" type="submit">
+            <mat-icon>save</mat-icon> Save
+          </button>
+          <button mat-button color="primary" (click)="onReset()">
+            <mat-icon>refresh</mat-icon> Reset
+          </button>
+          <button mat-button color="primary" (click)="goBackToCustomers()">
+            <mat-icon>arrow_back</mat-icon> Back
+          </button>
+        
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
