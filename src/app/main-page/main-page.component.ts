@@ -41,6 +41,11 @@ export class MainPageComponent {
    EventLognavigation(){
     this.router.navigate(['/EventLog']);
    }
+
+   Reportsnavigation(){
+    this.router.navigate(['/ReportList']);
+   }
+
    logout() {
  
     this.authService.logout().subscribe({

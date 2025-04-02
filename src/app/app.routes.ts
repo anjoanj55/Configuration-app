@@ -25,6 +25,10 @@ import {SubscriptionComponent } from './subscription/subscription.component'
 import {CustomerAlertComponent} from './customer-alert/customer-alert.component'
 import { DataShareService } from './data-share.service';
 import {EventLogComponent} from './event-log/event-log.component'
+import { ReportModuleComponent } from './report-module/report-module.component'
+import {ReportListComponent} from './report-list/report-list.component'
+
+
 const MSAL_INSTANCE_FACTORY = () => {
   return new PublicClientApplication({
     auth: {
@@ -45,7 +49,9 @@ export const routes: Routes = [
    {path:'LicenceList',component:LicenceListComponent},
    {path:'subscription',component:SubscriptionComponent},
    {path:'CustomerAlert',component:CustomerAlertComponent},
-   {path:'EventLog',component:EventLogComponent}
+   {path:'EventLog',component:EventLogComponent},
+   {path:'ReportModule',component:ReportModuleComponent},
+   {path:'ReportList',component:ReportListComponent}
 
 ];
 

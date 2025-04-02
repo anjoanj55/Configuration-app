@@ -8,6 +8,11 @@ import { MsalModule } from '@azure/msal-angular'; // Ensure MSAL Module is impor
 import { PublicClientApplication, InteractionType } from '@azure/msal-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { DataShareService } from './data-share.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';  // For Datepicker
+import { MatNativeDateModule } from '@angular/material/core';  // Native Date Adapter
+import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';  // Date Formatting
+import { MatCardModule } from '@angular/material/card';  // For Material Card (Optional, if used)
+import { MatDialogModule } from '@angular/material/dialog';  
 
 // MSAL instance factory
 const MSAL_INSTANCE_FACTORY = () => {
@@ -30,6 +35,11 @@ export const appConfig: ApplicationConfig = {
       MatIconModule,
       HttpClientModule,
       DataShareService,
+      MatIconModule, 
+      MatDialogModule,          
+      MatDatepickerModule,     
+      MatNativeDateModule,     
+      MatCardModule,   
       MsalModule.forRoot(
         MSAL_INSTANCE_FACTORY(),
         {

@@ -1,0 +1,57 @@
+.registration-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .registration-card {
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .heading {
+    font-family: 'Roboto', sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+    color: grey;
+    margin-bottom: 10px;
+  }
+  
+
+/* Button styles */
+.button-container {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    padding-top: 10px;
+  }
+  
+  .button-container button {
+    background-color: #04B2D9;
+    color: white !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .button-container button:hover {
+    background-color: #048ABF;
+    transform: scale(1.05);
+  }
+  
