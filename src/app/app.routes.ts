@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {CustomerQuestionnaireComponent} from './customer-questionnaire/customer-questionnaire.component'
 import {CustomerComponent} from './customer/customer.component'
-import {AddCustomerComponent} from './add-cutomer/add-cutomer.component'
+import {AddCustomerComponent} from './add-customer/add-customer.component'
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -45,7 +45,7 @@ export const routes: Routes = [
   { path: 'mainpage', component: MainPageComponent },
   { path: 'customerquestionnarie', component: CustomerQuestionnaireComponent },
   { path: 'Customer', component: CustomerComponent },
-   {path:'add-cutomer',component: AddCustomerComponent },
+   {path:'add-customer',component: AddCustomerComponent },
    {path:'LicenceList',component:LicenceListComponent},
    {path:'subscription',component:SubscriptionComponent},
    {path:'CustomerAlert',component:CustomerAlertComponent},

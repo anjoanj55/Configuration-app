@@ -17,8 +17,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-add-customer',
   standalone: true,
-  templateUrl: './add-cutomer.component.html',
-  styleUrls: ['./add-cutomer.component.css'],
+  templateUrl: './add-customer.component.html',
+  styleUrls: ['./add-customer.component.css'],
   imports: [
     CommonModule,
     ReactiveFormsModule,

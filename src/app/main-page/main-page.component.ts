@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,HostListener  } from '@angular/core';
 import { Router } from '@angular/router';
  
 import { MsalService } from '@azure/msal-angular';
@@ -13,10 +13,15 @@ import { DataShareService } from '../data-share.service';
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
+
+
+
 export class MainPageComponent {
   isLoggedIn :boolean  =true;
   loggedInUser:any =''
   ipforapi:any=''
+  
+
  constructor(private router: Router,private authService: MsalService,private Datashare: DataShareService)  {
   }
   
@@ -73,6 +78,9 @@ export class MainPageComponent {
   }
 
   ngOnInit(): void {
+    
+
+   
     this.ipforapi  = this.Datashare.getipdetails();
     console.log('ipcheck:', this.ipforapi);
     this.authService.instance.initialize().then(() => {

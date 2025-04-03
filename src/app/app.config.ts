@@ -12,7 +12,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';  // For Date
 import { MatNativeDateModule } from '@angular/material/core';  // Native Date Adapter
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';  // Date Formatting
 import { MatCardModule } from '@angular/material/card';  // For Material Card (Optional, if used)
-import { MatDialogModule } from '@angular/material/dialog';  
+import { MatDialogModule } from '@angular/material/dialog';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';  
 
 // MSAL instance factory
 const MSAL_INSTANCE_FACTORY = () => {
@@ -55,6 +56,6 @@ export const appConfig: ApplicationConfig = {
           ])
         }
       )
-    ),
+    ), provideAnimationsAsync(),
   ],
 };

@@ -75,7 +75,7 @@ export class CustomerComponent {
   }
 
   openAddDialog() {
-    this.router.navigate(['/add-cutomer']);
+    this.router.navigate(['/add-customer']);
   }
 
   deleteCustomer(id: number | null) {
@@ -86,7 +86,7 @@ export class CustomerComponent {
         spname: "[dbo].[sp_Delete_Customer]"
     };
 
-    const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/GENERICSQLEXEC';
+    const apiUrl = 'http://192.168.1.4/ConfigApi/api/Service/GENERICSQLEXEC';
 
     this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
         response => {
