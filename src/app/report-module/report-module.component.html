@@ -1,0 +1,77 @@
+<div class="registration-container">
+    <mat-card class="registration-card">
+      <mat-card-header>
+        <mat-card-title><label class="heading"> Add Report</label> </mat-card-title>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+          <div class="form-grid">
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                    <mat-label>Select Customer</mat-label>
+                    <mat-select formControlName="custName" placeholder="Choose a customer">
+                        <mat-option *ngFor="let customer of customerNames" [value]="customer">
+                          {{ customer }}
+                        </mat-option>
+                      </mat-select>
+              
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Industry </mat-label>
+                <input matInput formControlName="industryname" placeholder="Enter Industry name">
+              </mat-form-field>
+  
+              
+            </div>
+  
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Report Id</mat-label>
+                <input matInput formControlName="reportid" placeholder="Enter Report Id">
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline">
+                <mat-label>Report Name</mat-label>
+                <input matInput formControlName="reportname" placeholder="Enter Report Name" type="email">
+              </mat-form-field>
+  
+            </div>
+           
+            <div class="form-row">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Group </mat-label>
+                    <input matInput formControlName="group" placeholder="Enter Group ">
+                  </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Created Date</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="createdDate" placeholder="Select created date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+    
+                
+              </div>
+    
+              
+            </div>
+         
+  
+          <div class="button-container">
+            <button mat-button color="primary" type="submit">
+                <mat-icon>{{ isEditMode ? 'edit' : 'save' }}</mat-icon>
+                {{ isEditMode ? 'Update' : 'Save' }}
+              </button>
+            <button mat-button color="primary" (click)="onReset()">
+              <mat-icon>refresh</mat-icon> Reset
+            </button>
+            <button mat-button color="primary" (click)="backtoreportlist()">
+              <mat-icon>arrow_back</mat-icon> Back
+            </button>
+          
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

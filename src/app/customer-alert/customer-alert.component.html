@@ -1,0 +1,80 @@
+
+   <div class="container">
+    <h2 class="heading">Customer Alerts</h2>
+    <hr class="divider">
+    <div class="search-bar">
+        
+        <input type="text" placeholder="Search Customers..." [(ngModel)]="searchText">
+        <mat-icon>search</mat-icon>
+      </div>
+    <div class="button-container">
+      
+        <button mat-button color="primary">
+          <mat-icon>file_download</mat-icon> EXPORT
+        </button>
+        <button mat-button color="primary">
+          <mat-icon>file_upload</mat-icon> IMPORT
+        </button>
+    </div>
+  
+    <table mat-table [dataSource]="Licences" class="mat-elevation-z8">
+    
+      
+      <ng-container matColumnDef="LicenseType">
+          <th mat-header-cell *matHeaderCellDef>Customer Name</th>
+          <td mat-cell *matCellDef="let Licence">
+            <input *ngIf="Licence.isNew" [(ngModel)]="Licence.LicenseType" type="number" placeholder="Enter LicenceType">
+            <span *ngIf="!Licence.isNew">{{ Licence.LicenseType }}</span>
+          </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="LicenseKey">
+        <th mat-header-cell *matHeaderCellDef>Subscription Date</th>
+        <td mat-cell *matCellDef="let Licence">
+          <input *ngIf="Licence.isNew" [(ngModel)]="Licence.LicenseKey" type="number" placeholder="Enter LicenseKey">
+          <span *ngIf="!Licence.isNew">{{ Licence.LicenseKey }}</span>
+        </td>
+    </ng-container>
+  
+      
+      <ng-container matColumnDef="Pricing">
+        <th mat-header-cell *matHeaderCellDef>
+            Alert Type</th>
+        <td mat-cell *matCellDef="let Licence">
+          <input *ngIf="Licence.isNew" [(ngModel)]="Licence.Pricing" placeholder="Enter company name">
+          <span *ngIf="!Licence.isNew">{{ Licence.Price }}</span>
+        </td>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="Renewaltype">
+        <th mat-header-cell *matHeaderCellDef>Status
+        </th>
+        <td mat-cell *matCellDef="let Licence">
+          <input *ngIf="Licence.isNew" [(ngModel)]="Licence.Renewaltype" placeholder="Enter phone">
+          <span *ngIf="!Licence.isNew">{{ Licence.Renewaltype }}</span>
+        </td>
+      </ng-container>
+  
+     
+  
+      
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let Licence">
+            <button mat-icon-button color="primary" >
+                <mat-icon>edit</mat-icon>
+            </button>
+          <button mat-icon-button color="warn" (click)="deleteLicence(Licence.CustLicenseID)">
+            <mat-icon>save</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    </table>
+  </div>
+  
