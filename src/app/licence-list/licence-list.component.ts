@@ -89,10 +89,17 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./licence-list.component.css']
 })
 export class LicenceListComponent implements OnInit {
+<<<<<<< HEAD
   searchText: string = '';
   Licences: any[] = [];
   displayedColumns: string[] = ['LicenseType','LicenseKey', 'Pricing', 'Renewaltype','TrialPeriod_days','actions',];
   apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/SQLLOADEXEC'; 
+=======
+
+  Licences: any[] = [];
+  displayedColumns: string[] = ['LicenseType','LicenseKey', 'Pricing', 'Renewaltype','actions','TrialPeriod_days'];
+  apiUrl = 'https://localhost:44320/api/Service/SQLLOADEXEC'; 
+>>>>>>> origin/Adarsh
   storedProcedureName = '[dbo].[sp_select_License]'; 
 
   constructor(
@@ -122,9 +129,12 @@ export class LicenceListComponent implements OnInit {
   openAddDialog() {
     this.router.navigate(['/subscription']);
   }
+<<<<<<< HEAD
   navigateToSubscription() {
     this.router.navigate(['/subscriptionpage']);
   }
+=======
+>>>>>>> origin/Adarsh
 
   deleteLicence(id: number | null) {
     if (!id) return;
@@ -134,7 +144,11 @@ export class LicenceListComponent implements OnInit {
         spname: "[dbo].[sp_Delete_License]"
     };
  
+<<<<<<< HEAD
     const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/GENERICSQLEXEC';
+=======
+    const apiUrl = 'https://localhost:44320/api/Service/GENERICSQLEXEC';
+>>>>>>> origin/Adarsh
  
     this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
         response => {

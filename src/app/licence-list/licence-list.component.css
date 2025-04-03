@@ -88,6 +88,7 @@
  
 table {
     width: 100%;
+<<<<<<< HEAD
 }
 
 
@@ -103,4 +104,6 @@ table {
   width: 780px; /* Adjust width as needed */
   position: relative;
   gap: 8px;
+=======
+>>>>>>> origin/Adarsh
 }

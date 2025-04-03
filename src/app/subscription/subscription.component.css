@@ -84,6 +84,7 @@ button {
   min-width: 100px; /* Ensures buttons have a uniform width */
 }
 
+<<<<<<< HEAD
 
 /* Button styles */
 .button-container {
@@ -110,3 +111,5 @@ button {
   background-color: #048ABF;
   transform: scale(1.05);
 }
+=======
+>>>>>>> origin/Adarsh

@@ -259,6 +259,7 @@
       <div *ngIf="isLocked" class="lock-warning">
         <p>Your account is locked due to non-payment.</p>
       </div>
+<<<<<<< HEAD
       <div class="button-container">
         <button mat-button color="primary" type="submit"  [disabled]="isLocked">
           <mat-icon>save</mat-icon> Submit
@@ -275,6 +276,13 @@
         <button mat-raised-button color="primary" type="submit" [disabled]="isLocked">Submit</button>
         <button mat-raised-button color="warn" type="button" (click)="onClear()">Clear</button>
       </div> -->
+=======
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="isLocked">Submit</button>
+        <button mat-raised-button color="warn" type="button" (click)="onClear()">Clear</button>
+      </div>
+>>>>>>> origin/Adarsh
     </form>
   </mat-card>
 </div>
