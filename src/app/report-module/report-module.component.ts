@@ -75,7 +75,7 @@ export class ReportModuleComponent {
   }
  
   loadcustomerreportlist() {
-    const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/SQLLOADEXEC'; 
+    const apiUrl = 'https://localhost:44320/api/Service/SQLLOADEXEC'; 
     const storedProcedureName = '[dbo].[sp_select_customer]'; 
   
     const params = { spname: storedProcedureName }; 
@@ -94,7 +94,7 @@ export class ReportModuleComponent {
   }
 
   loadallreport() {
-    const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/SQLLOADEXEC'; 
+    const apiUrl = 'https://localhost:44320/api/Service/SQLLOADEXEC'; 
     const storedProcedureName = '[dbo].[sp_select_ReportConfig]'; 
   
     const params = { spname: storedProcedureName }; 
@@ -112,7 +112,7 @@ export class ReportModuleComponent {
   }
 
   loadallreport1() {
-    const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/SQLLOADEXEC'; 
+    const apiUrl = 'https://localhost:44320/api/Service/SQLLOADEXEC'; 
     const storedProcedureName = '[dbo].[sp_select_ReportConfig]'; 
   
     const params = { spname: storedProcedureName }; 
@@ -195,7 +195,7 @@ export class ReportModuleComponent {
 
         console.log("Sending Data to API:", requestData); 
    
-        const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/GENERICSQLEXEC';
+        const apiUrl = 'https://localhost:44320/api/Service/GENERICSQLEXEC';
    
         this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
             response => {
@@ -261,7 +261,7 @@ export class ReportModuleComponent {
       }])); 
 
       console.log("Sending Data to API:", requestData); 
-      this.http.post('http://103.199.163.162/ConfigApi/api/Service/GENERICSQLEXEC', requestData, { responseType: 'text' }).subscribe(
+      this.http.post('https://localhost:44320/api/Service/GENERICSQLEXEC', requestData, { responseType: 'text' }).subscribe(
         response => {
           if (response.trim().toLowerCase() === "success") {
             this.snackBar.open("report updated successfully!", "Close", { duration: 3000 });
@@ -327,7 +327,7 @@ export class ReportModuleComponent {
 
 
   backtoreportlist() {
-    this.router.navigate(['/ReportList']);
+    this.router.navigate(['/report-list']);
   }
   closeDialog(): void {
     this.dialogRef.close(); 

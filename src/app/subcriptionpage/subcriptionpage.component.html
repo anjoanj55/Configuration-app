@@ -1,0 +1,119 @@
+  <!-- <div class="subscription-container">
+    <mat-card>
+      <div class="dialog-header">
+        <h2>Add Subscription</h2>
+       
+      </div>
+      
+      <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="form-field-pair">
+            <mat-label>Customer Name</mat-label>
+            <mat-select formControlName="CustomerName">
+              <mat-option *ngFor="let customer of loadCustomerdata" [value]="customer.CustName">
+                {{ customer.CustName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="form-field-pair">
+            <mat-label>License Type</mat-label>
+            <mat-select formControlName="LicenseType">
+              <mat-option *ngFor="let license of LoadLicencedata" [value]="license.LicenseType">
+                {{ license.LicenseType }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+          
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="form-field-pair">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="startPicker" formControlName="StartDate">
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+        
+          <mat-form-field appearance="outline" class="form-field-pair">
+            <mat-label>Expiry Date</mat-label>
+            <input matInput [matDatepicker]="expiryPicker" formControlName="ExpiryDate" readonly>
+            <mat-datepicker-toggle matSuffix [for]="expiryPicker"></mat-datepicker-toggle>
+            <mat-datepicker #expiryPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        
+  
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="isLocked">Submit</button>
+          <button mat-raised-button color="warn" type="button" (click)="onClear()">Clear</button>
+        </div>
+      </form>
+    </mat-card>
+  </div> -->
+
+
+
+  
+  
+  
+
+
+  <div class="subscription-container">
+    <mat-card>
+      <h2>Create Subscription</h2>
+      <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+       
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Customer Name</mat-label>
+            <mat-select formControlName="CustomerName">
+              <mat-option *ngFor="let customer of loadCustomerdata" [value]="customer.CustName">
+                {{ customer.CustName }}
+              </mat-option>
+             
+            </mat-select>
+          </mat-form-field>
+   
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>License Type</mat-label>
+            <mat-select formControlName="LicenseType">
+              <mat-option *ngFor="let license of LoadLicencedata" [value]="license.LicenseType">
+                {{ license.LicenseType }}
+              </mat-option>        
+            </mat-select>
+          </mat-form-field>
+        </div>
+   
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="startPicker" formControlName="StartDate">
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+   
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Expiry Date</mat-label>
+            <input matInput [matDatepicker]="expiryPicker" formControlName="ExpiryDate" readonly>
+            <mat-datepicker-toggle matSuffix [for]="expiryPicker"></mat-datepicker-toggle>
+            <mat-datepicker #expiryPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width1">
+            <mat-label>User limit</mat-label>
+            <input matInput formControlName="UserLimit" placeholder="Enter license type" readonly>
+          </mat-form-field>
+        </div>
+        
+        <div class="button-container">
+          
+          <button mat-raised-button color="primary" type="submit" [disabled]="isLocked">Submit</button>
+          <button mat-raised-button color="warn" type="button" (click)="onClear()">Clear</button>
+          <button mat-raised-button color="warn" type="button" (click)="navsublistt()">Back</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+   

@@ -1,0 +1,129 @@
+<div class="container">
+    <h2 class="heading">Subscription Details</h2>
+    <hr class="divider">
+
+    <!-- <div class="search-bar">
+       
+      <input type="text" placeholder="Search Subscription..." [(ngModel)]="searchText">
+      <mat-icon>search</mat-icon>
+    </div> -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search Subscription..." [(ngModel)]="searchText">
+      <mat-icon>search</mat-icon>
+      <button *ngIf="searchText" mat-icon-button (click)="searchText = ''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    
+  
+    <div class="button-container">
+        <button mat-button color="primary" (click)="openAddDialog()">
+          <mat-icon>add</mat-icon>Add Subscription
+        </button>
+        <button mat-button color="primary">
+          <mat-icon>file_download</mat-icon> EXPORT
+        </button>
+        <button mat-button color="primary">
+          <mat-icon>file_upload</mat-icon> IMPORT
+        </button>
+        <button mat-button color="primary" (click)="goBackToMain()">
+          <mat-icon>arrow_back</mat-icon> Back
+        </button>
+        
+    </div>
+    
+ 
+  
+    <table mat-table [dataSource]="Subscription" class="mat-elevation-z8">
+    
+      
+      <ng-container matColumnDef="CustomerName">
+          <th mat-header-cell *matHeaderCellDef>Customer Name</th>
+          <td mat-cell *matCellDef="let Subscription">
+            <input *ngIf="Subscription.isNew" [(ngModel)]="Subscription.CustomerName" type="number" placeholder="Enter Customer Name">
+            <span *ngIf="!Subscription.isNew">{{ Subscription.CustomerName }}</span>
+          </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="LicenseType">
+        <th mat-header-cell *matHeaderCellDef>License Type</th>
+        <td mat-cell *matCellDef="let Subscription">
+          <input *ngIf="Subscription.isNew" [(ngModel)]="Subscription.LicenseType" type="number" placeholder="Enter LicenseType">
+          <span *ngIf="!Subscription.isNew">{{ Subscription.LicenseType }}</span>
+        </td>
+    </ng-container>
+  
+      
+      <ng-container matColumnDef="StartDate">
+        <th mat-header-cell *matHeaderCellDef>
+          Start Date</th>
+        <td mat-cell *matCellDef="let Subscription">
+          <input *ngIf="Subscription.isNew" [(ngModel)]="Subscription.StartDate" placeholder="Enter StartDate">
+          <span *ngIf="!Subscription.isNew">{{ Subscription.StartDate }}</span>
+        </td>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="ExpiryDate">
+        <th mat-header-cell *matHeaderCellDef>Expiry Date
+        </th>
+        <td mat-cell *matCellDef="let Subscription">
+          <input *ngIf="Subscription.isNew" [(ngModel)]="Subscription.ExpiryDate" placeholder="ExpiryDate">
+          <span *ngIf="!Subscription.isNew">{{ Subscription.ExpiryDate }}</span>
+        </td>
+      </ng-container>
+      <!-- <ng-container matColumnDef="Licenseexpiringdays">
+        <th mat-header-cell *matHeaderCellDef>Licence Expiring Days
+        </th>
+        <td mat-cell *matCellDef="let Subscription">
+          <input *ngIf="Subscription.isNew" [(ngModel)]="Subscription.Licenseexpiringdays" placeholder="Licenseexpiringdays">
+          <span *ngIf="!Subscription.isNew">{{ Subscription.Licenseexpiringdays }}</span>
+        </td>
+      </ng-container> -->
+      <ng-container matColumnDef="Licenseexpiringdays">
+        <th mat-header-cell *matHeaderCellDef>Licence Expiring Days</th>
+        <td 
+          mat-cell 
+          *matCellDef="let Subscription" 
+          [ngClass]="{'blink-red': Subscription.Licenseexpiringdays < 0}">
+          <input *ngIf="Subscription.isNew" [(ngModel)]="Subscription.Licenseexpiringdays" placeholder="Licenseexpiringdays">
+          <span *ngIf="!Subscription.isNew">{{ Subscription.Licenseexpiringdays }}</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="NoofUsers">
+        <th mat-header-cell *matHeaderCellDef>User Limit</th>
+        <td 
+          mat-cell 
+          *matCellDef="let NoofUsers" 
+          [ngClass]="{'blink-red': NoofUsers.NoofUsers < 0}">
+          <input *ngIf="NoofUsers.NoofUsers" [(ngModel)]="NoofUsers.NoofUsers" placeholder="Licenseexpiringdays">
+          <span *ngIf="!NoofUsers.NoofUsers">{{ NoofUsers.NoofUsers }}</span>
+        </td>
+      </ng-container>
+      
+  
+     
+
+     
+  
+      
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let Subscription">
+          
+         
+          <button *ngIf="Subscription.Licenseexpiringdays <= 0" mat-icon-button color="warn" (click)="ExtendSub(Subscription)">
+            <mat-icon>lock_open</mat-icon>
+          </button>
+          
+          
+          
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    </table>
+  </div>

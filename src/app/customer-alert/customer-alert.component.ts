@@ -26,7 +26,7 @@ export class CustomerAlertComponent {
   searchText: string = '';
   Licences: any[] = [];
   displayedColumns: string[] = ['LicenseType','LicenseKey', 'Pricing', 'Renewaltype','actions'];
-  apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/SQLLOADEXEC'; 
+  apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/SQLLOADEXEC'; 
   storedProcedureName = '[dbo].[sp_select_License]'; 
 
   constructor(
@@ -68,7 +68,7 @@ export class CustomerAlertComponent {
         spname: "[dbo].[sp_Delete_License]"
     };
  
-    const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/GENERICSQLEXEC';
+    const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/GENERICSQLEXEC';
  
     this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
         response => {

@@ -88,22 +88,45 @@
  
 table {
     width: 100%;
-<<<<<<< HEAD
 }
 
 
-/* Search Bar Styling */
 .search-bar {
   display: flex;
   align-items: center;
-  border: 1px solid gray;
-  border-radius: 3px;
-  height: 26px; /* Matches button height */
-  padding: 5px 10px;
-  background-color: white;
-  width: 780px; /* Adjust width as needed */
-  position: relative;
-  gap: 8px;
-=======
->>>>>>> origin/Adarsh
-}
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+  width: 800px;
+  height: 28px;
+  
+  }
+  
+  .search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 5px;
+  }
+  
+  .search-bar mat-icon {
+  color: #04B2D9; /* Set the search icon color to blue */
+  }
+  
+  .search-bar button mat-icon {
+  color: #04B2D9; /* Set the close icon color to blue */
+  }
+  
+  .search-bar button {
+  margin-left: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  }
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between search and buttons */
+    gap: 10px;
+    margin-bottom: 15px;
+    }

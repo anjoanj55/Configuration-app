@@ -28,7 +28,7 @@ export class ReportListComponent {
   reportlist: any[] = [];
   reportlistcopy:any[]=[]
   displayedColumns: string[] = ['ReportID','ReportName', 'CustomerName','actions'];
-  apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/SQLLOADEXEC'; 
+  apiUrl = 'https://localhost:44320/api/Service/SQLLOADEXEC'; 
   storedProcedureName = '[dbo].[sp_select_ReportConfig]'; 
 
   constructor(
@@ -90,6 +90,9 @@ export class ReportListComponent {
       this.reportlist = this.reportlistcopy;
     }
   }
+  goBack() {
+    this.router.navigate(['/mainpage']);
+  }
 
   clearsearch(){
     this.searchText ='';
@@ -125,7 +128,7 @@ export class ReportListComponent {
         spname: "[dbo].[sp_Delete_ReportConfig]"
     };
 
-    const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/GENERICSQLEXEC';
+    const apiUrl = 'https://localhost:44320/api/Service/GENERICSQLEXEC';
 
     this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
         response => {

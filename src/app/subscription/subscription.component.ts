@@ -113,11 +113,8 @@ import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { HttpClient } from '@angular/common/http';
-<<<<<<< HEAD
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
-=======
->>>>>>> origin/Adarsh
 
 @Component({
   selector: 'app-subscription',
@@ -127,19 +124,13 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-<<<<<<< HEAD
     MatIconModule,
-=======
->>>>>>> origin/Adarsh
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
     MatCardModule,
-<<<<<<< HEAD
     MatDatepickerModule,
-=======
->>>>>>> origin/Adarsh
   ],
   templateUrl: './subscription.component.html',
   styleUrls: ['./subscription.component.css']
@@ -163,6 +154,9 @@ export class SubscriptionComponent {
       Price: ['', [Validators.required, Validators.pattern('^[0-9]+(\\.[0-9]{1,2})?$')]],
       Renewaltype: ['', Validators.required],
       TermsandConditions: [''] ,
+      UserLimit: ['', [Validators.required, Validators.pattern('^[0-9]+(\\.[0-9]{1,2})?$')]],
+      Features: ['', Validators.required],
+      
       
     });
   }
@@ -180,13 +174,9 @@ export class SubscriptionComponent {
       this.isLocked = this.isExpired;
     }
   }
-<<<<<<< HEAD
   goBackTolicense(){
     this.router.navigate(['/LicenceList']);
   }
-=======
-
->>>>>>> origin/Adarsh
   onSubmit() {
     console.log("onSubmit() triggered!"); 
 
@@ -199,11 +189,7 @@ export class SubscriptionComponent {
 
       console.log("Sending Data to API:", requestData);
 
-<<<<<<< HEAD
-      const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/GENERICSQLEXEC';
-=======
-      const apiUrl = 'https://localhost:44320/api/Service/GENERICSQLEXEC';
->>>>>>> origin/Adarsh
+      const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/GENERICSQLEXEC';
 
       this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
         response => {

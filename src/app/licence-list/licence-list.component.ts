@@ -73,6 +73,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-licence-list',
@@ -89,17 +90,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./licence-list.component.css']
 })
 export class LicenceListComponent implements OnInit {
-<<<<<<< HEAD
   searchText: string = '';
   Licences: any[] = [];
   displayedColumns: string[] = ['LicenseType','LicenseKey', 'Pricing', 'Renewaltype','TrialPeriod_days','actions',];
-  apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/SQLLOADEXEC'; 
-=======
-
-  Licences: any[] = [];
-  displayedColumns: string[] = ['LicenseType','LicenseKey', 'Pricing', 'Renewaltype','actions','TrialPeriod_days'];
-  apiUrl = 'https://localhost:44320/api/Service/SQLLOADEXEC'; 
->>>>>>> origin/Adarsh
+  apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/SQLLOADEXEC'; 
   storedProcedureName = '[dbo].[sp_select_License]'; 
 
   constructor(
@@ -111,6 +105,29 @@ export class LicenceListComponent implements OnInit {
   ngOnInit(): void {
     this.loadLicence();
   }
+  clearsearch(){
+  this.searchText ='';
+  this.filterData();
+}
+filterData(): void {
+  if (this.searchText.trim()) {
+    const lowerCaseSearch = this.searchText.toLowerCase();
+    this.Licences = this.Licences.filter(licence =>
+      licence.LicenseType?.toLowerCase().includes(lowerCaseSearch) ||
+      licence.LicenseKey?.toLowerCase().includes(lowerCaseSearch) ||
+      licence.Pricing?.toLowerCase().includes(lowerCaseSearch) ||
+      licence.Renewaltype?.toLowerCase().includes(lowerCaseSearch) ||
+      licence.TrialPeriod_days?.toString().includes(lowerCaseSearch)
+    );
+  } else {
+    this.loadLicence(); // Reload original data if search is cleared
+  }
+}
+exportToExcel(): void {
+  const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.Licences)
+  const wb: XLSX.WorkBook = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+  XLSX.writeFile(wb, 'exported_data_Licence.xlsx');
+}
 
   loadLicence() {
     const params = { spname: this.storedProcedureName }; 
@@ -125,16 +142,16 @@ export class LicenceListComponent implements OnInit {
       }
     );
   }
+  goBackToMain(){
+    this.router.navigate(['/mainpage']);
+  }
 
   openAddDialog() {
     this.router.navigate(['/subscription']);
   }
-<<<<<<< HEAD
   navigateToSubscription() {
     this.router.navigate(['/subscriptionpage']);
   }
-=======
->>>>>>> origin/Adarsh
 
   deleteLicence(id: number | null) {
     if (!id) return;
@@ -144,11 +161,7 @@ export class LicenceListComponent implements OnInit {
         spname: "[dbo].[sp_Delete_License]"
     };
  
-<<<<<<< HEAD
-    const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/GENERICSQLEXEC';
-=======
-    const apiUrl = 'https://localhost:44320/api/Service/GENERICSQLEXEC';
->>>>>>> origin/Adarsh
+    const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/GENERICSQLEXEC';
  
     this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
         response => {

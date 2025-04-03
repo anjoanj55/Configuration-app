@@ -59,30 +59,7 @@
     display: none;
   }
  
-.button-container {
-    display: flex;
-    gap: 4px;
-    justify-content: flex-end;
-    margin-bottom: 15px;
-  }
- 
-  .button-container button {
-    background-color:#04B2D9;
-    color: white !important;
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 3px;
-    padding: 5px 15px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
- 
-  .button-container button:hover {
-    background-color:#048ABF;
-    transform: scale(1.05);
-  }
+
  
  
  
@@ -91,28 +68,71 @@ table {
 }
 
 
+/* Align search bar and buttons in a single row */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between search and buttons */
+  gap: 10px; /* Adds spacing between search bar and button container */
+  margin-bottom: 15px;
+  width: 100%;
+}
+
 .search-bar {
   display: flex;
   align-items: center;
-  border: 1px solid gray;
-  border-radius: 3px;
-  height: 26px;
-  padding: 5px 10px;
-  background-color: white;
-  width: 780px;
-  position: relative;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+  width: 750px;
+  height: 35px;
+  background: white;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.search-bar mat-icon {
+  color: #04B2D9; /* Set the search icon color to blue */
+  margin-right: 8px;
+}
+
+.search-bar button mat-icon {
+  color: #04B2D9; /* Set the close icon color to blue */
+}
+
+.search-bar button {
+  margin-left: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Button container aligned to the right */
+.button-container {
+  display: flex;
   gap: 8px;
 }
 
+.button-container button {
+  background-color: #04B2D9;
+  color: white !important;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 3px;
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-.close-button-container {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
-  }
-  
-  .mat-icon-button {
-    font-size: 24px;
-    color: #f44336; 
-  }
+.button-container button:hover {
+  background-color: #048ABF;
+  transform: scale(1.05);
+}

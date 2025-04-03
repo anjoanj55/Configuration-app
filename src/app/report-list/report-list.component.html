@@ -2,31 +2,31 @@
 
    <div class="container">
 
-    <div class="close-button-container">
-        <button mat-icon-button color="warn" (click)="closePage()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
+    
     <h2 class="heading">Report Details</h2>
     <hr class="divider">
-    <div class="search-bar">
-        
-      <input type="text" placeholder="Search reports..." [(ngModel)]="searchText"  (input)="filterData()">
-      <mat-icon>search</mat-icon>
-      <button  mat-button color="primary"  (click)="clearsearch()">
-        <mat-icon>close</mat-icon>
-      </button>
-    </div>
-    <div class="button-container">
-        <button mat-button color="primary" (click)="openReportDialog()">
-          <mat-icon>add</mat-icon> CREATE
-        </button>
-        <button mat-button color="primary" (click)="exportToExcel()">
-            <mat-icon>file_download</mat-icon>
-            EXPORT
+    <div class="header-container">
+      <div class="search-bar">
+          <input type="text" placeholder="Search Customers..." [(ngModel)]="searchText" (input)="filterData()">
+          <!-- <mat-icon>search</mat-icon> -->
+          <button mat-button color="primary" (click)="clearsearch()">
+              <mat-icon>close</mat-icon>
           </button>
-       
-    </div>
+      </div>
+      
+      <div class="button-container">
+          <button mat-button color="primary" (click)="openReportDialog()">
+              <mat-icon>add</mat-icon> CREATE
+          </button>
+          <button mat-button color="primary" (click)="exportToExcel()">
+              <mat-icon>file_download</mat-icon> EXPORT
+          </button>
+          <button mat-button color="primary"  (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon> Back
+          </button>
+      </div>
+  </div>
+  
   
     <table mat-table [dataSource]="reportlist" class="mat-elevation-z8">
     

@@ -1,9 +1,8 @@
-import { Component,HostListener  } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
  
 import { MsalService } from '@azure/msal-angular';
 import { MatIconModule } from '@angular/material/icon';
-import { DataShareService } from '../data-share.service'; 
 
 
 @Component({
@@ -13,16 +12,10 @@ import { DataShareService } from '../data-share.service';
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
-
-
-
 export class MainPageComponent {
   isLoggedIn :boolean  =true;
   loggedInUser:any =''
-  ipforapi:any=''
-  
-
- constructor(private router: Router,private authService: MsalService,private Datashare: DataShareService)  {
+ constructor(private router: Router,private authService: MsalService)  {
   }
   
   customernavigate(){
@@ -42,14 +35,13 @@ export class MainPageComponent {
    CustomerAlertnotification(){
     this.router.navigate(['/CustomerAlert']);
    }
-   
-   EventLognavigation(){
-    this.router.navigate(['/EventLog']);
+   subscriptionsnavigate(){
+    this.router.navigate(['/Subcriptionlist']);
+   }
+   reportnav(){
+    this.router.navigate(['/report-list']);
    }
 
-   Reportsnavigation(){
-    this.router.navigate(['/ReportList']);
-   }
 
    logout() {
  
@@ -78,11 +70,6 @@ export class MainPageComponent {
   }
 
   ngOnInit(): void {
-    
-
-   
-    this.ipforapi  = this.Datashare.getipdetails();
-    console.log('ipcheck:', this.ipforapi);
     this.authService.instance.initialize().then(() => {
  
       // MSAL is initialized

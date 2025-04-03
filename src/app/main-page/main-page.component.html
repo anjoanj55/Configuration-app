@@ -28,14 +28,14 @@
       </a>
     </div>
   
-    <div class="tile">
-      <a routerLink="/subscription" class="tile-link">
+    <div class="tile" (click)="subscriptionsnavigate()">
+      <a  class="tile-link">
         <i class="material-icons tilei">subscriptions</i>
         <p>Subscription</p>
       </a>
     </div>
   
-    <div class="tile" (click)="licensenavigate()">
+    <div class="tile" (click)="licensenavigate()" > 
       <a  class="tile-link">
         <i class="material-icons tilei">verified</i>
         <p>License</p>
@@ -56,7 +56,7 @@
       </a>
     </div>
   
-    <div class="tile" (click)="Reportsnavigation()">
+    <div class="tile">
       <a  class="tile-link">
         <i class="material-icons tilei">library_books</i>
         <p>Reports</p>
@@ -84,8 +84,8 @@
       </a>
     </div>
   
-    <div class="tile" (click)="EventLognavigation()">
-      <a  class="tile-link">
+    <div class="tile">
+      <a routerLink="/event" class="tile-link">
         <i class="material-icons tilei">event</i>
         <p>Event Logs</p>
       </a>
