@@ -9,7 +9,13 @@
     background-color: #ffffff;
     align-items: stretch;
      height: 85vh;
-    margin-top: 2%;
+    margin-top: 1%;
+}
+.h1class{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: xx-large;
+    color: gray;
 }
  
 .tile {
@@ -90,10 +96,10 @@
     .tilei{
         color: #438b31;
      } }
-.tile:nth-child(8) { background-color: #f0f0f0;
-    border-color:#b9b9b9;
+.tile:nth-child(8) { background-color: #c8c7e6;
+    border-color:#6c4ea8;
     .tilei{
-        color: #b9b9b9;
+        color: #6c4ea8;
      } }
 .tile:nth-child(9) { background-color: #fff1e5;
     border-color:#996e3a;

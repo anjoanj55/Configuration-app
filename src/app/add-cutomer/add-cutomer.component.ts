@@ -46,7 +46,7 @@ export class AddCustomerComponent {
     this.isUpdateMode = !!state?.customerData;  // Set update mode if data is present
  
     this.customerForm = this.fb.group({
-      licenseType: [''],
+      licenseType: [this.isUpdateMode ? '' : '', this.isUpdateMode ? [] : [Validators.required]],
       custName: ['', Validators.required],
       address: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
