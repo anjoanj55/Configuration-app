@@ -11,6 +11,9 @@ import * as XLSX from 'xlsx';
 import { ReportModuleComponent } from '../report-module/report-module.component'
 import { MatDialog } from '@angular/material/dialog'; 
 
+import { ConfirmSnackbarComponent } from '../confirm-snackbar/confirm-snackbar.component';
+
+
 @Component({
   selector: 'app-report-list',
   standalone: true,
@@ -27,8 +30,11 @@ export class ReportListComponent {
   searchText: string = '';
   reportlist: any[] = [];
   reportlistcopy:any[]=[]
-  displayedColumns: string[] = ['ReportID','ReportName', 'CustomerName','actions'];
-  apiUrl = 'https://localhost:44320/api/Service/SQLLOADEXEC'; 
+
+
+  displayedColumns: string[] = ['ReportName','CustomerName','ReportID','GroupID', 'actions'];
+  apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/SQLLOADEXEC'; 
+
   storedProcedureName = '[dbo].[sp_select_ReportConfig]'; 
 
   constructor(
@@ -46,29 +52,48 @@ export class ReportListComponent {
 
 
   }
-  editreport(reportData:any=[]){
-    const dialogRef = this.dialog.open(ReportModuleComponent, {
-      width: '500px', 
-      data: { action: 'edit', report: reportData } 
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.loadreportlist();
-    });
+  // editreport(reportData:any=[]){
+  //   const dialogRef = this.dialog.open(ReportModuleComponent, {
+  //     width: '500px', 
+  //     data: { action: 'edit', report: reportData } 
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //     this.loadreportlist();
+  //   });
+  // }
+  editreport(reportData: any = []) {
+    this.router.navigate(['/report-module'], { queryParams: { data: JSON.stringify(reportData) } });
   }
 
-  openReportDialog(): void {
-    const dialogRef = this.dialog.open(ReportModuleComponent, {
-      width: '500px', 
-      data: {report:  this.reportlist} 
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.loadreportlist();
+  openReportPage(): void {
+    this.router.navigate(['/report-module'], {
+      queryParams: { report: JSON.stringify(this.reportlist) }
     });
   }
+  openAddDialog() {
+    const userRole = localStorage.getItem('userRole'); // Retrieve role from localStorage
+ 
+    if (userRole === 'admin') {
+      this.router.navigate(['/report-module']);
+    } else {
+      this.router.navigate(['/access-denied']);
+    }
+  }
+  // openAddDialog(): void {
+  //   const dialogRef = this.dialog.open(ReportModuleComponent, {
+  //     width: '500px', 
+  //     data: {report:  this.reportlist} 
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //     this.loadreportlist();
+  //   });
+  // }
+
 
   exportToExcel(): void {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.reportlist);
@@ -77,17 +102,22 @@ export class ReportListComponent {
   }
 
 
-  filterData():void {
-    if (this.searchText) {
-      this.reportlist = this.reportlist.filter((report: ReportItem) =>
-        report.ReportName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-        report.CustomerName.toLowerCase().includes(this.searchText.toLowerCase())||
-        report.ReportID.toLowerCase().includes(this.searchText.toLowerCase())
+
+  filterData(): void {
+    if (this.searchText.trim()) {
+      const searchTextLower = this.searchText.toLowerCase();
+      
+      this.reportlist = this.reportlistcopy.filter((report: any) =>
+        report.ReportID?.toString().toLowerCase().includes(searchTextLower) ||
+        report.ReportName?.toLowerCase().includes(searchTextLower) ||
+        report.CustomerName?.toLowerCase().includes(searchTextLower) ||
+        report.GroupID?.toString().toLowerCase().includes(searchTextLower) ||  
+        report.CreatedBy?.toLowerCase().includes(searchTextLower) ||  
+        report.InsertedDate?.toLowerCase().includes(searchTextLower)  
       );
-    } 
-    
-    else {
-      this.reportlist = this.reportlistcopy;
+    } else {
+      this.reportlist = [...this.reportlistcopy]; 
+
     }
   }
   goBack() {
@@ -114,41 +144,65 @@ export class ReportListComponent {
     );
   }
 
-  openAddDialog() {
-    this.router.navigate(['/ReportModule']);
-  }
+
+  // openAddDialog() {
+  //   this.router.navigate(['/ReportModule']);
+  // }
+
 
 
   
   deleteReport(id: number | null) {
     if (!id) return;
 
-    const requestData = {
+  
+    const snackBarRef = this.snackBar.openFromComponent(ConfirmSnackbarComponent, {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ['snackbar-confirm'],
+      data: { message: "Are you sure you want to delete this report?" }
+    });
+  
+    snackBarRef.onAction().subscribe(() => {
+      // If user clicks "Yes", proceed with deletion
+      const requestData = {
         jsonFileparams: JSON.stringify([{ ID: id.toString() }]),
         spname: "[dbo].[sp_Delete_ReportConfig]"
-    };
-
-    const apiUrl = 'https://localhost:44320/api/Service/GENERICSQLEXEC';
-
-    this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
+      };
+  
+      const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/GENERICSQLEXEC';
+  
+      this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
         response => {
-            console.log("API Response:", response);
-            this.loadreportlist();
-
-            if (response.trim().toLowerCase() === "success") {
-                alert('Report Deleted Successfully'); 
-                //this.Report = this.Report.filter(c => c.CustID !== id);
-            } else {
-                alert('Failed to delete Report.'); 
-            }
+          console.log("API Response:", response);
+          this.loadreportlist();
+  
+          if (response.trim().toLowerCase() === "success") {
+            this.snackBar.open('Report Deleted Successfully', 'OK', {
+              duration: 3000,
+              panelClass: ['snackbar-success']
+            });
+          } else {
+            this.snackBar.open('Failed to delete report.', 'OK', {
+              duration: 3000,
+              panelClass: ['snackbar-error']
+            });
+          }
         },
         error => {
-            console.error("API Error:", error);
-            alert('Error deleting Report.'); 
+          console.error("API Error:", error);
+          this.snackBar.open('Error deleting report.', 'OK', {
+            duration: 3000,
+            panelClass: ['snackbar-error']
+          });
         }
-    );
+      );
+    });
+  }
+  
 }
-}
+
+
 
 
 interface ReportItem  {

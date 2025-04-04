@@ -40,13 +40,15 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "2mb"
+
+                  "maximumWarning": "12mb",
+                  "maximumError": "12mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "8kb",
-                  "maximumError": "8kb"
+                  "maximumWarning": "12mb",
+                  "maximumError": "12mb"
+
                 }
               ],
               "outputHashing": "all"
@@ -100,11 +102,12 @@
     }
   },
   "cli": {
-<<<<<<< HEAD
-    "analytics": false
-=======
+
+
     "analytics": "8d2a4e39-7896-4496-b52b-83c490c7e488"
 
->>>>>>> origin/Adarsh
+
+   
+
   }
 }

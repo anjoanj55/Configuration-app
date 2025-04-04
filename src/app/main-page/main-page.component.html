@@ -57,7 +57,9 @@
       </a>
     </div>
   
-    <div class="tile">
+
+    <div class="tile" (click)="reportnav()">
+
       <a  class="tile-link">
         <i class="material-icons tilei">library_books</i>
         <p>Reports</p>
@@ -85,8 +87,10 @@
       </a>
     </div>
   
-    <div class="tile">
-      <a routerLink="/event" class="tile-link">
+
+    <div class="tile" (click)="eventnav()">
+      <a class="tile-link">
+
         <i class="material-icons tilei">event</i>
         <p>Event Logs</p>
       </a>

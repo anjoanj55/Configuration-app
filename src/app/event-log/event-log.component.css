@@ -22,15 +22,6 @@
   }
    */
 
-   .matrow:hover {
-    background-color: rgba(213, 240, 245, 0.818)  !important  ; /* Light grey background on hover */
-    cursor: pointer;
-   
-    transition: background-color 0.1s ease-in-out;
-  }
-
-
-
    .container {
     padding: 6px;
   }
@@ -106,36 +97,45 @@ table {
   border: 1px solid #ccc;
   padding: 5px;
   border-radius: 4px;
-  width: 800px;
+  width: 750px;
   height: 28px;
-  
-  }
-  
-  .search-bar input {
+  background: white;
+}
+
+.search-bar input {
   flex: 1;
   border: none;
   outline: none;
   padding: 5px;
-  }
-  
-  .search-bar mat-icon {
+  font-size: 14px;
+}
+
+.search-bar mat-icon {
   color: #04B2D9; /* Set the search icon color to blue */
-  }
-  
-  .search-bar button mat-icon {
+  margin-right: 8px;
+}
+
+.search-bar button mat-icon {
   color: #04B2D9; /* Set the close icon color to blue */
-  }
-  
-  .search-bar button {
+}
+
+.search-bar button {
   margin-left: 8px;
   cursor: pointer;
   background: none;
   border: none;
-  }
-  .header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Space between search and buttons */
-    gap: 10px;
-    margin-bottom: 15px;
-    }
+}
+
+/* Button container aligned to the right */
+.button-container {
+  display: flex;
+  gap: 8px;
+}
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between search and buttons */
+  gap: 10px; /* Adds spacing between search bar and button container */
+  margin-bottom: 15px;
+  width: 100%;
+}

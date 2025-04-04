@@ -29,6 +29,7 @@ import { ConfirmSnackbarComponent } from './confirm-snackbar/confirm-snackbar.co
 import {ReportListComponent } from './report-list/report-list.component';
 import {ReportModuleComponent} from './report-module/report-module.component';
 import {SubcriptionpageComponent} from './subcriptionpage/subcriptionpage.component';
+import {EventLogComponent} from './event-log/event-log.component';
 
 const MSAL_INSTANCE_FACTORY = () => {
   return new PublicClientApplication({
@@ -53,8 +54,9 @@ export const routes: Routes = [
    {path:'Subcriptionlist',component:SubcriptionlistComponent},
    { path: 'confirm-snackbar', component: ConfirmSnackbarComponent },
    { path: 'report-list', component:ReportListComponent},
-   { path: 'report-modul',component:ReportModuleComponent},
-   { path: 'subcriptionpage',component:SubcriptionpageComponent}
+   { path: 'report-module',component:ReportModuleComponent},
+   { path: 'subcriptionpage',component:SubcriptionpageComponent},
+   { path: 'event-log',component:EventLogComponent}
 
 ];
 
