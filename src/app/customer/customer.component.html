@@ -3,28 +3,27 @@
   <hr class="divider">
  
   <div class="header-container">
-    <!-- Search Bar -->
+
     <div class="search-bar">
        
-        <input type="text" placeholder="Search Customers..." [(ngModel)]="searchText" (input)="filterData()">
-        <!-- <mat-icon>search</mat-icon> -->
-        <button  mat-button color="primary"  (click)="clearsearch()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
+      <input type="text" placeholder="Search Customer..." [(ngModel)]="searchText" (input)="filterData()">
+      <!-- <mat-icon>search</mat-icon> -->
+      <button   color="primary"  (click)="clearsearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
  
-    <!-- Button Group -->
     <div class="button-container">
-      <button mat-button (click)="openAddDialog()">
+      <button mat-raised-button (click)="openAddDialog()">
         <mat-icon>add</mat-icon> CREATE
       </button>
-      <button mat-button (click)="exportToExcel()">
-        <mat-icon>file_upload</mat-icon> EXPORT
+      <button mat-raised-button (click)="exportToExcel()">
+        <mat-icon>file_download</mat-icon> EXPORT
       </button>
       <!-- <button mat-button>
         <mat-icon>file_upload</mat-icon> IMPORT
       </button> -->
-      <button mat-button color="primary"  (click)="goBack()">
+      <button mat-raised-button color="primary"  (click)="goBack()">
         <mat-icon>arrow_back</mat-icon> BACK
       </button>
     </div>
