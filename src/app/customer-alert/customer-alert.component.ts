@@ -38,7 +38,9 @@ export class CustomerAlertComponent {
   ngOnInit(): void {
     this.loadLicence();
   }
-
+  goBack() {
+    this.router.navigate(['/mainpage']);
+  }
   loadLicence() {
     const params = { spname: this.storedProcedureName }; 
   
