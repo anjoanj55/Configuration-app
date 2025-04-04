@@ -1,6 +1,4 @@
-
 /* /* .registration-container {
-
     display: flex;
     justify-content: center;
     padding: 20px;
@@ -32,8 +30,6 @@
   
 
 
-
-
 .button-container {
     display: flex;
     gap: 5px;
@@ -58,7 +54,6 @@
     background-color: #048ABF;
     transform: scale(1.05);
   }
-
   
 ------------------------------------------- */
 
@@ -155,5 +150,4 @@ button {
   background-color: #048ABF;
   transform: scale(1.05);
 }
-
   

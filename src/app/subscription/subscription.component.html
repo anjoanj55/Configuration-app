@@ -184,9 +184,13 @@
 
 
 
- <div class="subscription-container">
-  <mat-card>
-    <h2>Create License</h2>
+ <div class="licence-container">
+  <mat-card class="licence-card">
+    <mat-card-header>
+      <mat-card-title>Add License</mat-card-title>
+    </mat-card-header>
+ 
+    <mat-card-content>
     <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
       
       <div class="form-row">
@@ -274,7 +278,7 @@
       </div>
       <div class="button-container">
         <button mat-button color="primary" type="submit"  [disabled]="isLocked">
-          <mat-icon>save</mat-icon> SUBMIT
+          <mat-icon>save</mat-icon> SAVE
         </button>
         <button mat-button color="primary" (click)="onClear()">
           <mat-icon>refresh</mat-icon> CLEAR
@@ -289,6 +293,7 @@
         <button mat-raised-button color="warn" type="button" (click)="onClear()">Clear</button>
       </div> -->
     </form>
+   </mat-card-content>
   </mat-card>
 </div>
 

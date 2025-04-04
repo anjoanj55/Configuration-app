@@ -1,3 +1,9 @@
+.matrow:hover {
+  background-color: rgba(213, 240, 245, 0.818)  !important  ; /* Light grey background on hover */
+  cursor: pointer;
+ 
+  transition: background-color 0.1s ease-in-out;
+}
 .container {
     padding: 6px;
   }
@@ -67,58 +73,39 @@ table {
 }
 
 .search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+  width: 750px;
+  height: 28px;
+  background: white;
+}
 
-    display: flex;
-    align-items: center;
-    border: 1px solid gray;
-    border-radius: 3px;
-    height: 26px; /* Matches button height */
-    padding: 5px 10px;
-    background-color: white;
-    width: 780px; /* Adjust width as needed */
-    position: relative;
-    gap: 8px;
-  }
-   
-  /* Placeholder-like label */
-  .search-placeholder {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 12px;
-    font-family: 'Roboto', sans-serif;
-    color: #666;
-    transition: all 0.3s ease;
-    pointer-events: none; /* Prevent interaction */
-  }
-   
-  /* Move label up when user types */
-  .search-bar input:focus + .search-placeholder,
-  .search-bar input:not(:placeholder-shown) + .search-placeholder {
-    top: 5px;
-    font-size: 1px;
-    color: #ffffff;
-  }
-   
-  .search-bar input {
-    border: none;
-    outline: none;
-    font-size: 12px;
-    font-family: 'Roboto', sans-serif;
-    flex-grow: 1;
-    width: 100%;
-    padding: 5px 0;
-    background: transparent;
-  }
-  .search-bar mat-icon {
-    color: #04B2D9;
-    font-size: 18px;
-    margin-left: 5px;
-    margin-bottom: 2px;
-  }
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 5px;
+  font-size: 14px;
+}
 
+.search-bar mat-icon {
+  color: #04B2D9; /* Set the search icon color to blue */
+  margin-right: 8px;
+}
 
+.search-bar button mat-icon {
+  color: #04B2D9; /* Set the close icon color to blue */
+}
+
+.search-bar button {
+  margin-left: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
   .blink-red {
     animation: blink 1s infinite;
     background-color: red !important;

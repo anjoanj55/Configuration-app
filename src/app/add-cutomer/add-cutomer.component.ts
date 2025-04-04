@@ -36,6 +36,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 export class AddCustomerComponent {
   customerForm: FormGroup;
   customer: any = {};
+  isEditMode: boolean = false;
   isUpdateMode = true; // NEW: Flag to determine mode
  
   constructor(private fb: FormBuilder, private router: Router, private http: HttpClient, private snackBar: MatSnackBar) {
@@ -77,7 +78,7 @@ export class AddCustomerComponent {
  
   ngOnInit(): void {
     console.log("ngOnInit triggered");
- 
+    
     if (this.customer && this.customer.CustID) {
       console.log("Customer data received:", this.customer);
  
@@ -98,18 +99,21 @@ export class AddCustomerComponent {
         contactSEmail: this.customer.ContactSEmail || '',
         notes: this.customer.Notes || ''
       });
- 
+      this.isEditMode = true;
       this.isUpdateMode = true;
     } else {
       console.log("No valid customer data available, entering Insert mode");
       this.isUpdateMode = false;
+      this.isEditMode = false;
     }
   }
  
   saveOrUpdateCustomer() {
     if (this.isUpdateMode) {
+      
       this.updateCustomer();
     } else {
+      
       this.onSubmit();
     }
   }

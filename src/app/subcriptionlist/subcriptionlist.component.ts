@@ -118,7 +118,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { SubcriptionpageComponent } from '../subcriptionpage/subcriptionpage.component';
-
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-subcriptionlist',
@@ -213,20 +213,22 @@ export class SubcriptionlistComponent implements OnInit {
   //   this.router.navigate(['/subscriptionpage']);
   // }
 
-  ExtendSub(subscription: any) {
-    console.log("Extend button clicked for:", subscription);
+  // ExtendSub(subscription: any) {
+  //   console.log("Extend button clicked for:", subscription);
 
     
-    this.subscriptionForm.patchValue({
-      CustomerName: subscription.CustomerName,
-      LicenseType: subscription.LicenseType,
-      UpdatedBy:[''],
+  //   this.subscriptionForm.patchValue({
+  //     CustomerName: subscription.CustomerName,
+  //     LicenseType: subscription.LicenseType,
+  //     UpdatedBy:[''],
       
-    });
+  //   });
 
-    this.onSubmit();
+  //   this.onSubmit();
+  // }
+  ExtendSub(customer: any) {
+    this.router.navigate(['/Subcriptionpage'], { state: { customerData: customer } });
   }
-
   onSubmit() {
     console.log("onSubmit() triggered!");
 
@@ -264,6 +266,35 @@ export class SubcriptionlistComponent implements OnInit {
         control?.markAsTouched();
       });
     }
+  }
+  exportToExcel(): void {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.Subscription);
+    const wb: XLSX.WorkBook = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+    XLSX.writeFile(wb, 'exported_data_Subscription.xlsx');
+  }
+
+
+  filterData(): void {
+    if (this.searchText && this.searchText.trim()) {
+      const searchTextLower = this.searchText.toLowerCase();
+ 
+      this.Subscription = this.Subscription.filter(subscription =>
+        subscription.CustomerName?.toLowerCase().includes(searchTextLower) ||
+        subscription.LicenseType?.toLowerCase().includes(searchTextLower) ||
+        subscription.StartDate?.toLowerCase().includes(searchTextLower) ||
+        subscription.ExpiryDate?.toLowerCase().includes(searchTextLower) ||
+        subscription.Licenseexpiringdays?.toString().toLowerCase().includes(searchTextLower) ||
+        subscription.NoofUsers?.toString().toLowerCase().includes(searchTextLower)
+      );
+    } else {
+      this.loadSubscription(); // Reload original list when search is cleared
+    }
+  }
+ 
+
+  clearsearch(){
+    this.searchText ='';
+    this.filterData();
   }
 
   // deleteLicence(id: number | null) {

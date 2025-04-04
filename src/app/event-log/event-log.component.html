@@ -4,13 +4,15 @@
     <h2 class="heading">Event Logs</h2>
     <hr class="divider">
     <div class="header-container">
-    <div class="search-bar">
-      <input type="text" placeholder="Search Logs..." [(ngModel)]="searchText" (input)="filterData()">
-      <!-- <mat-icon>search</mat-icon> -->
-      <button mat-button color="primary" (click)="clearsearch()">
+      <div class="search-bar">
+       
+        <input type="text" placeholder="Search Log..." [(ngModel)]="searchText" (input)="filterData()">
+        <!-- <mat-icon>search</mat-icon> -->
+        <button   color="primary"  (click)="clearsearch()">
           <mat-icon>close</mat-icon>
-      </button>
-  </div>
+        </button>
+      </div>
+   
     <div class="button-container">
         <button mat-button color="primary" (click)="exportToExcel()">
             <mat-icon>file_download</mat-icon>
@@ -80,7 +82,7 @@
     
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="matrow" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   
     </table>
   </div>

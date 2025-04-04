@@ -21,7 +21,12 @@
     margin-bottom: 10px;
   }
    */
-
+   .matrow:hover {
+    background-color: rgba(213, 240, 245, 0.818)  !important  ; /* Light grey background on hover */
+    cursor: pointer;
+   
+    transition: background-color 0.1s ease-in-out;
+  }
    .container {
     padding: 6px;
   }
@@ -85,9 +90,7 @@ table {
   padding: 5px;
   border-radius: 4px;
   width: 750px;
-
   height: 28px;
-
   background: white;
 }
 

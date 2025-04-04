@@ -66,13 +66,13 @@
 
 
    <div class="container">
-    <h2 class="heading">License Details</h2>
+    <h2 class="heading">License List</h2>
     <hr class="divider">
     <div class="header-container">
     <div class="search-bar">
        
 
-      <input type="text" placeholder="Search Licence..." [(ngModel)]="searchText" (input)="filterData()">
+      <input type="text" placeholder="Search License..." [(ngModel)]="searchText" (input)="filterData()">
       <!-- <mat-icon>search</mat-icon> -->
       <button   color="primary"  (click)="clearsearch()">
 
@@ -83,7 +83,7 @@
     <div class="button-container">
 
         <button mat-raised-button color="primary" (click)="openAddDialog()">
-          <mat-icon>add</mat-icon> CREATE
+          <mat-icon>add</mat-icon> ADD LICENSE
         </button>
         <button mat-raised-button color="primary" (click)="exportToExcel()">
           <mat-icon>file_download</mat-icon> EXPORT

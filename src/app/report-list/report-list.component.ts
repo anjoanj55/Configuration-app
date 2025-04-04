@@ -10,9 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import * as XLSX from 'xlsx';
 import { ReportModuleComponent } from '../report-module/report-module.component'
 import { MatDialog } from '@angular/material/dialog'; 
-
 import { ConfirmSnackbarComponent } from '../confirm-snackbar/confirm-snackbar.component';
-
 
 @Component({
   selector: 'app-report-list',
@@ -30,11 +28,8 @@ export class ReportListComponent {
   searchText: string = '';
   reportlist: any[] = [];
   reportlistcopy:any[]=[]
-
-
   displayedColumns: string[] = ['ReportName','CustomerName','ReportID','GroupID', 'actions'];
   apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/SQLLOADEXEC'; 
-
   storedProcedureName = '[dbo].[sp_select_ReportConfig]'; 
 
   constructor(
@@ -52,7 +47,6 @@ export class ReportListComponent {
 
 
   }
-
   // editreport(reportData:any=[]){
   //   const dialogRef = this.dialog.open(ReportModuleComponent, {
   //     width: '500px', 
@@ -94,13 +88,11 @@ export class ReportListComponent {
   //   });
   // }
 
-
   exportToExcel(): void {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.reportlist);
     const wb: XLSX.WorkBook = { Sheets: { 'data': ws }, SheetNames: ['data'] };
     XLSX.writeFile(wb, 'exported_data.xlsx');
   }
-
 
 
   filterData(): void {
@@ -117,7 +109,6 @@ export class ReportListComponent {
       );
     } else {
       this.reportlist = [...this.reportlistcopy]; 
-
     }
   }
   goBack() {
@@ -144,17 +135,14 @@ export class ReportListComponent {
     );
   }
 
-
   // openAddDialog() {
   //   this.router.navigate(['/ReportModule']);
   // }
 
 
-
   
   deleteReport(id: number | null) {
     if (!id) return;
-
   
     const snackBarRef = this.snackBar.openFromComponent(ConfirmSnackbarComponent, {
       horizontalPosition: 'center',
@@ -201,7 +189,6 @@ export class ReportListComponent {
   }
   
 }
-
 
 
 

@@ -49,7 +49,6 @@ export class SubcriptionpageComponent {
   isExpired = false;
   isLocked = false;
   TrialPeriod_days: number = 30;
-
   customer:any;
 
   constructor(private fb: FormBuilder, private router: Router,private http: HttpClient) {
@@ -57,17 +56,14 @@ export class SubcriptionpageComponent {
     const state = navigation?.extras.state as { customerData?: any };
     this.customer = state?.customerData || {};
  
-
     this.subscriptionForm = this.fb.group({
       CustomerName : ['', Validators.required],
       LicenseType:['',Validators.required],
       UpdatedBy:[''],
       StartDate:['', Validators.required],
       ExpiryDate:['', Validators.required],
-
       UserLimit: [''],
       trialDays:['']
-
    });
    
   }
@@ -75,7 +71,6 @@ export class SubcriptionpageComponent {
   //   this.dialogRef.close(); // This will close the dialog
   // }
   ngOnInit(): void {
-
     if (this.customer && this.customer.SubscriptionID) {
       console.log("Customer data received:", this.customer);
  
@@ -104,7 +99,6 @@ export class SubcriptionpageComponent {
       this.subscriptionForm.get('CustomerName');
     }
     
-
     
 
   }
@@ -189,10 +183,8 @@ export class SubcriptionpageComponent {
         const expiryDate = addDays(new Date(startDate), trialDays);
         const userLimit = selectedLicense.UserLimit || 0;
         this.subscriptionForm.patchValue({ ExpiryDate: expiryDate.toISOString().split('T')[0],
-
         UserLimit: userLimit,
         trialDays:trialDays 
-
         });
       }
     }

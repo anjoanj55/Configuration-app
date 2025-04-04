@@ -30,9 +30,10 @@ import * as XLSX from 'xlsx';
   ]
 })
 export class CustomerComponent   implements OnInit{
-  userRole: string | null = null;
+  userRole: string | null ="admin";
   searchText: string = '';
   customers: any[] = [];
+
   displayedColumns: string[] = ['id', 'name', 'phone', 'address', 'email', 'actions'];
   apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/SQLLOADEXEC';
   storedProcedureName = '[dbo].[sp_select_customer]';
@@ -45,7 +46,7 @@ export class CustomerComponent   implements OnInit{
  
   ngOnInit(): void {
     this.loadCustomers();
-    //localStorage.setItem('userRole', 'admin');
+    localStorage.setItem('userRole', 'admin');
   }
   goBack() {
     this.router.navigate(['/mainpage']);

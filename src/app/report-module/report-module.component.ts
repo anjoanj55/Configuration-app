@@ -2,9 +2,7 @@
 
 
 
-
 import { Component } from '@angular/core';
-
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -15,12 +13,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
  import { MatSnackBarModule } from '@angular/material/snack-bar';
-
 
 @Component({
   selector: 'app-report-module',
@@ -36,16 +32,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-
     MatSnackBarModule
   ],
-
   templateUrl: './report-module.component.html',
   styleUrl: './report-module.component.css'
 })
 export class ReportModuleComponent {
   reportForm: FormGroup;
-
   reportlist: ReportItem[] = [];
   report: any = {};
   customerNames: string[] = [];
@@ -65,14 +58,12 @@ export class ReportModuleComponent {
       reportid: ['', Validators.required],
       reportname: ['', Validators.required],
       group: [''],
-
       createdDate: [new Date()],
       createdBy: [''],
       UpdatedBy: [''],
       ID: [''], 
       clientID: [''] 
     });
-
   }
 
   ngOnInit(): void {
@@ -100,12 +91,10 @@ export class ReportModuleComponent {
         this.customerNames = this.reportlist.map(item => item.CustName);
       },
       (error) => console.error('Error fetching customer report list:', error)
-
     );
   }
 
   loadallreport() {
-
     const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/SQLLOADEXEC'; 
     const params = { spname: '[dbo].[sp_select_ReportConfig]' };
 
@@ -118,7 +107,6 @@ export class ReportModuleComponent {
   }
 
   patchFormValues(reportData: any) {
-
     this.reportForm.patchValue({
       ID: reportData.ID,
       custName: reportData.CustomerName,  
@@ -128,12 +116,10 @@ export class ReportModuleComponent {
       group: reportData.GroupID,
       createdDate: new Date(reportData.CreatedDate),
       clientID: String(reportData.CustomerID)
-
     });
   }
 
     onSubmit() {
-
     let requestData;
    if(this.isEditMode == false){
     if (this.reportForm.valid) {
@@ -160,9 +146,7 @@ export class ReportModuleComponent {
 
         console.log("Sending Data to API:", requestData); 
    
-
         const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/GENERICSQLEXEC';
-
    
         this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
             response => {
@@ -171,9 +155,7 @@ export class ReportModuleComponent {
                 // Check if response is "success"
                 if (response.trim().toLowerCase() === "success") {
                     alert("report added successfully!");
-
                     
-
                     this.reportForm.reset(); // Clear the form
                 } else {
                     // alert("Unexpected response: " + response);
@@ -230,7 +212,6 @@ export class ReportModuleComponent {
       }])); 
 
       console.log("Sending Data to API:", requestData); 
-
       const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/GENERICSQLEXEC';
 
       this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
@@ -243,13 +224,11 @@ export class ReportModuleComponent {
       
             this.reportForm.reset(); // Clear the form
           } else {
-
             this.snackBar.open("Operation failed.", "Close", { duration: 3000 });
           }
         },
         error => {
           console.error("API Error:", error);
-
           this.snackBar.open("Error updating report.", "Close", { duration: 3000 });
         }
       );
@@ -288,7 +267,6 @@ export class ReportModuleComponent {
   }
 }
 
-
 interface ReportItem {
   CustName: string;
   industryname: string;
@@ -297,6 +275,4 @@ interface ReportItem {
   group: string;
   createdDate: string;
   createdBy: string;
-
 }
-
