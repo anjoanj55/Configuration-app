@@ -59,7 +59,30 @@
     display: none;
   }
  
-
+.button-container {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+  }
+ 
+  .button-container button {
+    background-color:#04B2D9;
+    color: white !important;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 5px 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+ 
+  .button-container button:hover {
+    background-color:#048ABF;
+    transform: scale(1.05);
+  }
  
  
  
@@ -67,16 +90,6 @@ table {
     width: 100%;
 }
 
-
-/* Align search bar and buttons in a single row */
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Space between search and buttons */
-  gap: 10px; /* Adds spacing between search bar and button container */
-  margin-bottom: 15px;
-  width: 100%;
-}
 
 .search-bar {
   display: flex;
@@ -118,21 +131,11 @@ table {
   display: flex;
   gap: 8px;
 }
-
-.button-container button {
-  background-color: #04B2D9;
-  color: white !important;
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 3px;
-  padding: 5px 15px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.button-container button:hover {
-  background-color: #048ABF;
-  transform: scale(1.05);
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between search and buttons */
+  gap: 10px; /* Adds spacing between search bar and button container */
+  margin-bottom: 15px;
+  width: 100%;
 }

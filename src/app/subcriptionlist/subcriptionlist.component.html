@@ -8,26 +8,23 @@
       <mat-icon>search</mat-icon>
     </div> -->
     <div class="search-bar">
-      <input type="text" placeholder="Search Subscription..." [(ngModel)]="searchText">
-      <mat-icon>search</mat-icon>
-      <button *ngIf="searchText" mat-icon-button (click)="searchText = ''">
-        <mat-icon>close</mat-icon>
+      <input type="text" placeholder="Search Subscription..." [(ngModel)]="searchText" (input)="filterData()">
+      <!-- <mat-icon>search</mat-icon> -->
+      <button mat-button color="primary" (click)="clearsearch()">
+          <mat-icon>close</mat-icon>
       </button>
-    </div>
+  </div>
     
   
     <div class="button-container">
         <button mat-button color="primary" (click)="openAddDialog()">
-          <mat-icon>add</mat-icon>Add Subscription
+          <mat-icon>add</mat-icon>ADD SUBSCRIPTION
         </button>
-        <button mat-button color="primary">
+        <button mat-button color="primary" (click)="exportToExcel()">
           <mat-icon>file_download</mat-icon> EXPORT
         </button>
-        <button mat-button color="primary">
-          <mat-icon>file_upload</mat-icon> IMPORT
-        </button>
         <button mat-button color="primary" (click)="goBackToMain()">
-          <mat-icon>arrow_back</mat-icon> Back
+          <mat-icon>arrow_back</mat-icon> BACK
         </button>
         
     </div>

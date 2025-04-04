@@ -19,18 +19,18 @@
         <mat-icon>add</mat-icon> CREATE
       </button>
       <button mat-button (click)="exportToExcel()">
-        <mat-icon>file_download</mat-icon> EXPORT
+        <mat-icon>file_upload</mat-icon> EXPORT
       </button>
       <!-- <button mat-button>
         <mat-icon>file_upload</mat-icon> IMPORT
       </button> -->
       <button mat-button color="primary"  (click)="goBack()">
-        <mat-icon>arrow_back</mat-icon> Back
+        <mat-icon>arrow_back</mat-icon> BACK
       </button>
     </div>
   </div>
  
-  <table mat-table [dataSource]="customers" class="mat-elevation-z8">
+  <table mat-table [dataSource]="customers" class="mat-elevation-z8 tablestyle">
       <!-- Customer Type Column -->
       <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef>Customer Type</th>
@@ -92,7 +92,7 @@
       </ng-container>
  
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="matrow" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
  
   </table>
 </div>

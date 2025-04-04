@@ -1,4 +1,8 @@
-import { Component,Inject } from '@angular/core';
+
+
+
+
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -9,11 +13,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-report-module',
@@ -29,130 +32,81 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatSnackBarModule ],
+    MatSnackBarModule
+  ],
   templateUrl: './report-module.component.html',
   styleUrl: './report-module.component.css'
 })
 export class ReportModuleComponent {
   reportForm: FormGroup;
-  
-  reportlist: ReportItem[] = []; 
+  reportlist: ReportItem[] = [];
   report: any = {};
   customerNames: string[] = [];
-  buttonname =''
-  action:any=''
-  reportid:any=''
-  reportalllist:any=[];
-  isEditMode:boolean =false
-  isUpdateMode = true; 
- 
-  constructor(private fb: FormBuilder, private router: Router, private http: HttpClient,
-    public dialogRef: MatDialogRef<ReportModuleComponent>,
-     private snackBar: MatSnackBar,
-     @Inject(MAT_DIALOG_DATA) public data: any ) 
-     {
-    const navigation = this.router.getCurrentNavigation();
-    const state = navigation?.extras.state as { reportData?: any };
+  reportalllist: any[] = [];
+  isEditMode: boolean = false;
   
-    this.report = state?.reportData || {};
-    this.isUpdateMode = !!state?.reportData;  
- 
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private http: HttpClient, 
+    private snackBar: MatSnackBar
+  ) {
     this.reportForm = this.fb.group({
       custName: ['', Validators.required],
-      industryname:[''],
+      industryname: [''],
       reportid: ['', Validators.required],
       reportname: ['', Validators.required],
-      group:[''],
+      group: [''],
       createdDate: [new Date()],
       createdBy: [''],
       UpdatedBy: [''],
       ID: [''], 
       clientID: [''] 
     });
-
-
-    
   }
- 
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+
+      console.log("Query Params Received:", params); // Log the entire query params
+      if (params['data']) {
+        this.report = JSON.parse(params['data']);
+        this.isEditMode = true;
+        this.patchFormValues(this.report);
+        this.loadallreport();
+      }
+    });
+
+    this.loadcustomerreportlist();
+  }
+
   loadcustomerreportlist() {
-    const apiUrl = 'https://localhost:44320/api/Service/SQLLOADEXEC'; 
-    const storedProcedureName = '[dbo].[sp_select_customer]'; 
-  
-    const params = { spname: storedProcedureName }; 
-  
+    const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/SQLLOADEXEC'; 
+    const params = { spname: '[dbo].[sp_select_customer]' };
+
     this.http.get<any[]>(apiUrl, { params }).subscribe(
       (data) => {
-        console.log('Fetched loadcustomerreportlist:', data); 
         this.reportlist = data;
         this.customerNames = this.reportlist.map(item => item.CustName);
-        console.log('Fetched loadcustomerreportlistfilter:', this.customerNames); 
       },
-      (error) => {
-        console.error('Error fetching loadcustomerreportlist:', error);
-      }
+      (error) => console.error('Error fetching customer report list:', error)
     );
   }
 
   loadallreport() {
-    const apiUrl = 'https://localhost:44320/api/Service/SQLLOADEXEC'; 
-    const storedProcedureName = '[dbo].[sp_select_ReportConfig]'; 
-  
-    const params = { spname: storedProcedureName }; 
-  
+    const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/SQLLOADEXEC'; 
+    const params = { spname: '[dbo].[sp_select_ReportConfig]' };
+
     this.http.get<any[]>(apiUrl, { params }).subscribe(
       (data) => {
-        console.log('Fetched loadcustomerreportlist:', data); 
-      this.reportalllist = data;
-      this.reportalllist = data.filter(report => report.reportid ===  this.reportid);
+        this.reportalllist = data.filter(report => report.reportid === this.report.reportid);
       },
-      (error) => {
-        console.error('Error fetching loadcustomerreportlist:', error);
-      }
+      (error) => console.error('Error fetching report list:', error)
     );
   }
 
-  loadallreport1() {
-    const apiUrl = 'https://localhost:44320/api/Service/SQLLOADEXEC'; 
-    const storedProcedureName = '[dbo].[sp_select_ReportConfig]'; 
-  
-    const params = { spname: storedProcedureName }; 
-  
-    this.http.get<any[]>(apiUrl, { params }).subscribe(
-      (data) => {
-        console.log('Fetched loadcustomerreportlist:', data); 
-      this.reportalllist = data;
-      //this.reportalllist = data.filter(report => report.reportid ===  this.reportid);
-      },
-      (error) => {
-        console.error('Error fetching loadcustomerreportlist:', error);
-      }
-    );
-  }
-
-
-  ngOnInit(): void {
-    
-    this.loadcustomerreportlist();
-    this.action = this.data.action; 
-    this.report = this.data.report;
-    console.log('Received Report Data:', this.report); 
-    if(this.action =="edit"){
-      this.isEditMode = true;
-      this.patchFormValues(this.data.report);
-      this.loadallreport();
-      if (this.reportForm.controls['reportid']) {
-        console.log('Setting Report ID:', this.report.ReportID); 
-        this.reportForm.controls['reportid'].setValue(this.report.ReportID); 
-      }
-    }
-    else{
-      this.isEditMode = false;
-      this.patchFormValues(this.data.report);
-      this.loadallreport();
-    }
-  }
   patchFormValues(reportData: any) {
-    console.log('Patching values to form:', reportData); 
     this.reportForm.patchValue({
       ID: reportData.ID,
       custName: reportData.CustomerName,  
@@ -162,13 +116,10 @@ export class ReportModuleComponent {
       group: reportData.GroupID,
       createdDate: new Date(reportData.CreatedDate),
       clientID: String(reportData.CustomerID)
-       
     });
   }
- 
 
- 
-  onSubmit() {
+    onSubmit() {
     let requestData;
    if(this.isEditMode == false){
     if (this.reportForm.valid) {
@@ -195,7 +146,7 @@ export class ReportModuleComponent {
 
         console.log("Sending Data to API:", requestData); 
    
-        const apiUrl = 'https://localhost:44320/api/Service/GENERICSQLEXEC';
+        const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/GENERICSQLEXEC';
    
         this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
             response => {
@@ -204,7 +155,7 @@ export class ReportModuleComponent {
                 // Check if response is "success"
                 if (response.trim().toLowerCase() === "success") {
                     alert("report added successfully!");
-                    this.dialogRef.close(); 
+                    
                     this.reportForm.reset(); // Clear the form
                 } else {
                     // alert("Unexpected response: " + response);
@@ -261,82 +212,60 @@ export class ReportModuleComponent {
       }])); 
 
       console.log("Sending Data to API:", requestData); 
-      this.http.post('https://localhost:44320/api/Service/GENERICSQLEXEC', requestData, { responseType: 'text' }).subscribe(
+      const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/GENERICSQLEXEC';
+
+      this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
         response => {
+          console.log("API Response:", response);
+      
+          // Check if response is "success"
           if (response.trim().toLowerCase() === "success") {
-            this.snackBar.open("report updated successfully!", "Close", { duration: 3000 });
-            this.dialogRef.close();         
-            } 
-            else {
+            this.snackBar.open("Report updated successfully!", "Close", { duration: 3000 });
+      
+            this.reportForm.reset(); // Clear the form
+          } else {
             this.snackBar.open("Operation failed.", "Close", { duration: 3000 });
           }
         },
         error => {
           console.error("API Error:", error);
-          this.snackBar.open("Error updating reportForm.", "Close", { duration: 3000 });
+          this.snackBar.open("Error updating report.", "Close", { duration: 3000 });
         }
       );
-    } else {
-      this.reportForm.markAllAsTouched();
-      this.snackBar.open("Please fill in all required fields correctly.", "Close", { duration: 3000 });
-    }
+      } else {
+        console.log("Form is invalid:", this.reportForm.value);
+      
+        // Mark all fields as touched to trigger validation messages
+        Object.keys(this.reportForm.controls).forEach(key => {
+          const control = this.reportForm.get(key);
+          control?.markAsTouched();
+        });
+      
+        this.snackBar.open("Please fill in all required fields correctly.", "Close", {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      }}
   }
-  }
- 
- 
   onReset() {
-    if (this.reportForm) {
-      // Temporarily disable validation
-      Object.keys(this.reportForm.controls).forEach(key => {
-        const control = this.reportForm.get(key);
-        control?.clearValidators();
-        //control?.updateValueAndValidity({ onlySelf: true, emitEvent: false });
-      });
- 
-      // Reset the form without validation
-      this.reportForm.reset({
-        custName:  '',
-        industryname: '',
-        reportid: '',
-        reportname: '',
-        group: '',
-        createdDate: '',
-        createdBy: '',
-        
-      }, {
-        emitEvent: false,  // Prevent additional event triggers
-        onlySelf: true     // Only affect this control
-      });
- 
-     
-      this.reportForm.markAsPristine();
-      this.reportForm.markAsUntouched();
- 
-      // Show reset confirmation
-      this.snackBar.open('Form cleared', 'Close', {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-      });
- 
-      // Reset report object
-      this.report = {};
-    }
+    this.reportForm.reset({
+      custName: '',
+      industryname: '',
+      reportid: '',
+      reportname: '',
+      group: '',
+      createdDate: '',
+      createdBy: '',
+    });
+
+    this.snackBar.open('Form cleared', 'Close', { duration: 2000 });
   }
 
-
-
-  backtoreportlist() {
+  goBack() {
     this.router.navigate(['/report-list']);
   }
-  closeDialog(): void {
-    this.dialogRef.close(); 
-  }
-
-
- 
 }
-
 
 interface ReportItem {
   CustName: string;

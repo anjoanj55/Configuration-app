@@ -1,7 +1,9 @@
 <div class="registration-container">
   <mat-card class="registration-card">
     <mat-card-header>
-      <mat-card-title>Add Customer</mat-card-title>
+      <mat-card-title>
+        <label class="heading"> {{ isUpdateMode ? 'Edit Customer' : 'Add Customer' }} </label>
+      </mat-card-title>
     </mat-card-header>
  
     <mat-card-content>
@@ -97,17 +99,17 @@
  
         <div class="button-container">
           <button *ngIf="!isUpdateMode" mat-button color="primary" type="submit">
-            <mat-icon>save</mat-icon> Save
+            <mat-icon>save</mat-icon> SAVE
           </button>
           <button *ngIf="isUpdateMode" mat-button color="accent" type="button" (click)="updateCustomer()">
-            <mat-icon>edit</mat-icon> Update
+            <mat-icon>edit</mat-icon> UPDATE
           </button>
          
           <button mat-button color="primary" (click)="onReset()">
-            <mat-icon>refresh</mat-icon> Clear
+            <mat-icon>refresh</mat-icon> CLEAR
           </button>
           <button mat-button color="primary" (click)="goBackToCustomers()">
-            <mat-icon>arrow_back</mat-icon> Back
+            <mat-icon>arrow_back</mat-icon> BACK
           </button>
           <!-- <button mat-button color="primary" (click)="access()">
             <mat-icon>arrow_back</mat-icon> test

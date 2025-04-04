@@ -45,7 +45,7 @@ export class CustomerComponent   implements OnInit{
  
   ngOnInit(): void {
     this.loadCustomers();
-    localStorage.setItem('userRole', 'admin');
+    //localStorage.setItem('userRole', 'admin');
   }
   goBack() {
     this.router.navigate(['/mainpage']);

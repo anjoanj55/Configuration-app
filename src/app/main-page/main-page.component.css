@@ -1,35 +1,44 @@
 .tile-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    max-width: 100%;
+    max-width: auto;
+    max-height: auto;
     margin: 0 auto;
     gap: 20px;
     padding: 20px 50px;
-    background-color: #f0f2f5;
+    background-color: #ffffff;
     align-items: stretch;
-    height: auto;
+     height: 85vh;
+    margin-top: 1%;
+}
+.h1class{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: xx-large;
+    color: gray;
 }
  
 .tile {
     background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
     padding: 25px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
     box-sizing: border-box;
-    border: 1px solid #e0e0e0;
+    border: 1px solid ;
+   
 }
 
 
 .tile:hover {
     background-color: #f9f9f9;
-    transform: translateY(-40px) translateX(-20px) rotateX(0deg) rotateY(0deg);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px) translateX(-5px) rotateX(0deg) rotateY(0deg);
+    box-shadow: 0 10px 20px rgba(15, 14, 14, 0.559);
 }
  
-.tile i {
+.tilei {
     font-size: 40px;
     color: #4a4a4a;
 }
@@ -50,22 +59,91 @@
 }
  
 /* Tile Background Colors */
-.tile:nth-child(1) { background-color: #e8ccf4; }
-.tile:nth-child(2) { background-color: #9debf5; }
-.tile:nth-child(3) { background-color: #bfedd9; }
-.tile:nth-child(4) { background-color: #f7e5b4; }
-.tile:nth-child(5) { background-color: #f0f6ca; }
-.tile:nth-child(6) { background-color: #dce9f5; }
-.tile:nth-child(7) { background-color: #edffe5; }
-.tile:nth-child(8) { background-color: #f0f0f0; }
-.tile:nth-child(9) { background-color: #fff1e5; }
-.tile:nth-child(10) { background-color: #f0f0f0; }
-.tile:nth-child(11) { background-color: #f7c6f7; }
-.tile:nth-child(12) { background-color: #d6f7d1; }
-.tile:nth-child(13) { background-color: #e5ffe5; }
-.tile:nth-child(14) { background-color: #f9dddd; }
-.tile:nth-child(15) { background-color: #aedce8; }
-.tile:nth-child(16) { background-color: #ffffe5; }
+.tile:nth-child(1) {
+     background-color: #e8ccf4;
+     border-color: #b176ca;
+     .tilei{
+        color: #b176ca;
+     }
+     }
+.tile:nth-child(2) { background-color: #9debf5;
+    border-color:#18b5c6;
+    .tilei{
+        color: #18b5c6;
+     } }
+.tile:nth-child(3) { background-color: #bfedd9;
+    border-color:#149b3c;
+    .tilei{
+        color: #149b3c;
+     } }
+.tile:nth-child(4) { background-color: #f7e5b4;
+    border-color:#c5ab1a;
+    .tilei{
+        color: #c5ab1a;
+     } }
+.tile:nth-child(5) { background-color: #f0f6ca;
+    border-color:#9db021;
+    .tilei{
+        color: #9db021;
+     } }
+.tile:nth-child(6) { background-color: #dce9f5;
+    border-color:#5171a4;
+    .tilei{
+        color: #5171a4;
+     } }
+.tile:nth-child(7) { background-color: #edffe5;
+    border-color:#438b31;
+    .tilei{
+        color: #438b31;
+     } }
+.tile:nth-child(8) { background-color: #c8c7e6;
+    border-color:#6c4ea8;
+    .tilei{
+        color: #6c4ea8;
+     } }
+.tile:nth-child(9) { background-color: #fff1e5;
+    border-color:#996e3a;
+    .tilei{
+        color: #996e3a;
+     } }
+.tile:nth-child(10) { background-color: #d5c0c0;
+    border-color:#9a5656;
+    .tilei{
+        color: #9a5656;
+     } }
+.tile:nth-child(11) { background-color: #f7c6f7;
+    border-color:#752c70;
+    .tilei{
+        color: #752c70;
+     } }
+.tile:nth-child(12) { background-color: #d6f7d1;
+    border-color:#218820;
+    .tilei{
+        color: #218820;
+     } }
+.tile:nth-child(13) { background-color: #e6b68c;
+    border-color:#7e662a;
+    .tilei{
+        color: #7e662a;
+     } }
+.tile:nth-child(14) { background-color: #f9dddd;
+    border-color:#872b2b;
+    .tilei{
+        color: #872b2b;
+     } }
+.tile:nth-child(15) { background-color: #aedce8;
+    border-color:#31676d;
+    .tilei{
+        color: #31676d;
+     } }
+.tile:nth-child(16) { background-color: #ffffe5;
+    border-color:#768513;
+    .tilei{
+        color: #768513;
+     } }
+
+
+
  
 @media (max-width: 1200px) {
     .tile-container {
@@ -88,9 +166,9 @@
 
 .logout-container {
     position: fixed;
-    top: 20px;
-    right: 20px; 
-    background-color: #ffffff;
+    top: 15px;
+    right: 15px; 
+    background-color: lightgray;
     border-radius: 50%; 
     padding: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -104,6 +182,6 @@
 }
 
 .logout-container i {
-    font-size: 30px;
+    font-size: 50px;
     color: #4a4a4a; /* Icon color */
 }

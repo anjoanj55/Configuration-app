@@ -41,6 +41,9 @@ export class MainPageComponent {
    reportnav(){
     this.router.navigate(['/report-list']);
    }
+   eventnav(){
+    this.router.navigate(['/event-log']);
+   }
 
 
    logout() {

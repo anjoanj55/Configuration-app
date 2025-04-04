@@ -49,17 +49,21 @@ export class SubcriptionpageComponent {
   isExpired = false;
   isLocked = false;
   TrialPeriod_days: number = 30;
-
-  
+  customer:any;
 
   constructor(private fb: FormBuilder, private router: Router,private http: HttpClient) {
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as { customerData?: any };
+    this.customer = state?.customerData || {};
+ 
     this.subscriptionForm = this.fb.group({
       CustomerName : ['', Validators.required],
       LicenseType:['',Validators.required],
       UpdatedBy:[''],
       StartDate:['', Validators.required],
       ExpiryDate:['', Validators.required],
-      UserLimit: [''] 
+      UserLimit: [''],
+      trialDays:['']
    });
    
   }
@@ -67,12 +71,34 @@ export class SubcriptionpageComponent {
   //   this.dialogRef.close(); // This will close the dialog
   // }
   ngOnInit(): void {
-    this.loadCustomer()
-    this.LoadLicence()
-    this.subscriptionForm.get('LicenseType')?.valueChanges.subscribe(() => this.updateExpiryDate());
-    this.subscriptionForm.get('StartDate')?.valueChanges.subscribe(() => this.updateExpiryDate());
-    this.subscriptionForm.get('ExpiryDate')?.valueChanges.subscribe(() => this.updateExpiryDate());
-    this.subscriptionForm.get('CustomerName');
+    if (this.customer && this.customer.SubscriptionID) {
+      console.log("Customer data received:", this.customer);
+ 
+      this.subscriptionForm.patchValue({
+        LicenseType: this.customer.LicenseType || '',
+        StartDate: this.customer.StartDate || '',
+        ExpiryDate: this.customer.ExpiryDate || '',
+        CustomerName: this.customer.CustomerName || '',
+        UserLimit: this.customer.UserLimit || '',
+        
+      });
+
+      this.loadCustomer()
+      this.LoadLicence()
+      this.subscriptionForm.get('LicenseType')?.valueChanges.subscribe(() => this.updateExpiryDate());
+       this.subscriptionForm.get('StartDate')?.valueChanges.subscribe(() => this.updateExpiryDate());
+       this.subscriptionForm.get('ExpiryDate')?.valueChanges.subscribe(() => this.updateExpiryDate());
+      this.subscriptionForm.get('CustomerName');
+    } else {
+      console.log("No valid customer data available, entering Insert mode");
+      this.loadCustomer()
+      this.LoadLicence()
+      this.subscriptionForm.get('LicenseType')?.valueChanges.subscribe(() => this.updateExpiryDate());
+       this.subscriptionForm.get('StartDate')?.valueChanges.subscribe(() => this.updateExpiryDate());
+       this.subscriptionForm.get('ExpiryDate')?.valueChanges.subscribe(() => this.updateExpiryDate());
+      this.subscriptionForm.get('CustomerName');
+    }
+    
     
 
   }
@@ -157,7 +183,8 @@ export class SubcriptionpageComponent {
         const expiryDate = addDays(new Date(startDate), trialDays);
         const userLimit = selectedLicense.UserLimit || 0;
         this.subscriptionForm.patchValue({ ExpiryDate: expiryDate.toISOString().split('T')[0],
-        UserLimit: userLimit 
+        UserLimit: userLimit,
+        trialDays:trialDays 
         });
       }
     }

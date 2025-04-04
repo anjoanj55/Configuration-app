@@ -71,7 +71,7 @@
     <div class="header-container">
     <div class="search-bar">
        
-      <input type="text" placeholder="Search Customers..." [(ngModel)]="searchText" (input)="filterData()">
+      <input type="text" placeholder="Search License..." [(ngModel)]="searchText" (input)="filterData()">
       <!-- <mat-icon>search</mat-icon> -->
       <button  mat-button color="primary"  (click)="clearsearch()">
         <mat-icon>close</mat-icon>
@@ -82,13 +82,13 @@
           <mat-icon>add</mat-icon> CREATE
         </button>
         <button mat-button color="primary" (click)="exportToExcel()">
-          <mat-icon>file_download</mat-icon> EXPORT
+          <mat-icon>file_upload</mat-icon> EXPORT
         </button>
         <!-- <button mat-button color="primary">
           <mat-icon>file_upload</mat-icon> IMPORT
         </button> -->
         <button mat-button color="primary" (click)="goBackToMain()">
-          <mat-icon>arrow_back</mat-icon> Back
+          <mat-icon>arrow_back</mat-icon> BACK
         </button>
         <!-- <button mat-button color="accent" (click)="navigateToSubscription()">
           <mat-icon>subscriptions</mat-icon> Manage Subscription

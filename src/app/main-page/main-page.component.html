@@ -1,3 +1,4 @@
+<h1 class="h1class">Command Centre</h1>
 <div class="logout-container" (click)="logout()">
   <a href="#" class="logout-link">
     <mat-icon>person</mat-icon>
@@ -9,112 +10,112 @@
 <div class="tile-container">
     <div class="tile">
       <a routerLink="/admin" class="tile-link">
-        <i class="material-icons">admin_panel_settings</i>
+        <i class="material-icons tilei">admin_panel_settings</i>
         <p>Admin</p>
       </a>
     </div>
   
     <div class="tile">
       <a routerLink="/dbconfig" class="tile-link">
-        <i class="material-icons">cloud</i>
+        <i class="material-icons tilei">cloud</i>
         <p>DB Config</p>
       </a>
     </div>
   
     <div class="tile" (click)="customernavigate()">
       <a  class="tile-link">
-        <i class="material-icons">people</i>
+        <i class="material-icons tilei">people</i>
         <p>Customer</p>
       </a>
     </div>
   
     <div class="tile" (click)="subscriptionsnavigate()">
       <a  class="tile-link">
-        <i class="material-icons">subscriptions</i>
+        <i class="material-icons tilei">subscriptions</i>
         <p>Subscription</p>
       </a>
     </div>
   
     <div class="tile" (click)="licensenavigate()" > 
       <a  class="tile-link">
-        <i class="material-icons">verified</i>
+        <i class="material-icons tilei">verified</i>
         <p>License</p>
       </a>
     </div>
   
     <div class="tile">
       <a routerLink="/crm" class="tile-link">
-        <i class="material-icons">assignment</i>
+        <i class="material-icons tilei">assignment</i>
         <p>CRM</p>
       </a>
     </div>
   
     <div class="tile">
       <a routerLink="/access" class="tile-link">
-        <i class="material-icons">vpn_key</i>
+        <i class="material-icons tilei">vpn_key</i>
         <p>Access Grants</p>
       </a>
     </div>
   
-    <div class="tile">
+    <div class="tile" (click)="reportnav()">
       <a  class="tile-link">
-        <i class="material-icons">library_books</i>
+        <i class="material-icons tilei">library_books</i>
         <p>Reports</p>
       </a>
     </div>
   
     <div class="tile" (click)="CustomerAlertnotification()">
       <a class="tile-link">
-        <i class="material-icons">notifications</i>
+        <i class="material-icons tilei">notifications</i>
         <p>Notifications</p>
       </a>
     </div>
   
     <div class="tile">
       <a routerLink="/msal" class="tile-link">
-        <i class="material-icons">lock</i>
+        <i class="material-icons tilei">lock</i>
         <p>MSAL</p>
       </a>
     </div>
   
     <div class="tile">
       <a routerLink="/audit" class="tile-link">
-        <i class="material-icons">history</i>
+        <i class="material-icons tilei">history</i>
         <p>Audit Logs</p>
       </a>
     </div>
   
-    <div class="tile">
-      <a routerLink="/event" class="tile-link">
-        <i class="material-icons">event</i>
+    <div class="tile" (click)="eventnav()">
+      <a class="tile-link">
+        <i class="material-icons tilei">event</i>
         <p>Event Logs</p>
       </a>
     </div>
   
     <div class="tile">
       <a routerLink="/security" class="tile-link">
-        <i class="material-icons">security</i>
+        <i class="material-icons tilei">security</i>
         <p>Security Config</p>
       </a>
     </div>
   
     <div class="tile">
       <a routerLink="/api" class="tile-link">
-        <i class="material-icons">api</i>
+        <i class="material-icons tilei">api</i>
         <p>API Gateway</p>
       </a>
     </div>
   
     <div class="tile">
       <a routerLink="/Scaling" class="tile-link">
-        <i class="material-icons">home</i>
+        <i class="material-icons tilei">home</i>
         <p>Scaling</p>
       </a>
     </div>
   
     <div class="tile">
       <a routerLink="/Billing" class="tile-link">
-        <i class="material-icons">receipt</i>
+        <i class="material-icons tilei">receipt</i>
         <p>Billing</p>
       </a>
     </div>
