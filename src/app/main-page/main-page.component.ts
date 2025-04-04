@@ -22,7 +22,9 @@ export class MainPageComponent {
     this.router.navigate(['/Customer']);
   
    }
-
+   navdbconfig(){
+    this.router.navigate(['/Dbconfig']);
+   }
    
   licensenavigate(){
     this.router.navigate(['/LicenceList']);

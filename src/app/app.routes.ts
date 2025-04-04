@@ -30,6 +30,8 @@ import {ReportListComponent } from './report-list/report-list.component';
 import {ReportModuleComponent} from './report-module/report-module.component';
 import {SubcriptionpageComponent} from './subcriptionpage/subcriptionpage.component';
 import {EventLogComponent} from './event-log/event-log.component';
+import {DbconfigComponent} from './dbconfig/dbconfig.component'
+import {AdddbconfigComponent} from './adddbconfig/adddbconfig.component'
 
 const MSAL_INSTANCE_FACTORY = () => {
   return new PublicClientApplication({
@@ -56,7 +58,9 @@ export const routes: Routes = [
    { path: 'report-list', component:ReportListComponent},
    { path: 'report-module',component:ReportModuleComponent},
    { path: 'subcriptionpage',component:SubcriptionpageComponent},
-   { path: 'event-log',component:EventLogComponent}
+   { path: 'event-log',component:EventLogComponent},
+   {path:'Dbconfig',component:DbconfigComponent},
+   {path:'Adddbconfig',component:AdddbconfigComponent}
 
 ];
 
