@@ -277,13 +277,13 @@
         <p>Your account is locked due to non-payment.</p>
       </div>
       <div class="button-container">
-        <button mat-button color="primary" type="submit"  [disabled]="isLocked">
+        <button mat-raised-button color="primary" type="submit"  [disabled]="isLocked">
           <mat-icon>save</mat-icon> SAVE
         </button>
-        <button mat-button color="primary" (click)="onClear()">
+        <button mat-raised-button color="primary" (click)="onClear()">
           <mat-icon>refresh</mat-icon> CLEAR
         </button>
-        <button mat-button color="primary" (click)="goBackTolicense()">
+        <button mat-raised-button color="primary" (click)="goBackTolicense()">
           <mat-icon>arrow_back</mat-icon> BACK
         </button>
       

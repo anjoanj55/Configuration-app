@@ -63,18 +63,18 @@
 
         <div class="button-container">
           <!-- Save/Update Button -->
-          <button mat-button color="primary" type="submit">
+          <button mat-raised-button color="primary" type="submit">
             <mat-icon>{{ isEditMode ? 'edit' : 'save' }}</mat-icon>
             {{ isEditMode ? 'UPDATE' : 'SAVE' }}
           </button>
 
           <!-- Reset Button -->
-          <button mat-button color="warn" type="button" (click)="onReset()">
+          <button mat-raised-button color="warn" type="button" (click)="onReset()">
             <mat-icon>refresh</mat-icon> CLEAR
           </button>
 
           <!-- Back Button -->
-          <button mat-button color="accent" type="button" (click)="goBack()">
+          <button mat-raised-button color="accent" type="button" (click)="goBack()">
             <mat-icon>arrow_back</mat-icon> BACK
           </button>
         </div>
