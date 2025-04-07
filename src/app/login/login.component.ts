@@ -229,16 +229,16 @@ export class LoginComponent implements OnInit{
  
           next: (result) => {
  
-            console.log(result);
+            console.log("val",result);
  
             // Handle successful login
  
-            this.router.navigate(['mainpage']);
+            //this.router.navigate(['mainpage']);
  
           },
- 
-          error: (error) => console.log(error)
- 
+          
+          error: (error) => console.log("error",error)
+        
         });
  
     }

@@ -185,7 +185,7 @@ export class SubcriptionlistComponent implements OnInit {
     //     console.log('Dialog result:', result);
     //   }
     // });
-    this.router.navigate(['/subcriptionpage']);
+    this.router.navigate(['/Subcriptionpage']);
   }
   goBackToMain(){
     this.router.navigate(['/mainpage']);

@@ -57,7 +57,7 @@ export const routes: Routes = [
    { path: 'confirm-snackbar', component: ConfirmSnackbarComponent },
    { path: 'report-list', component:ReportListComponent},
    { path: 'report-module',component:ReportModuleComponent},
-   { path: 'subcriptionpage',component:SubcriptionpageComponent},
+   { path: 'Subcriptionpage',component:SubcriptionpageComponent},
    { path: 'event-log',component:EventLogComponent},
    {path:'Dbconfig',component:DbconfigComponent},
    {path:'Adddbconfig',component:AdddbconfigComponent}

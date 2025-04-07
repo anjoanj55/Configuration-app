@@ -46,7 +46,7 @@ export class DbconfigComponent {
   searchText: string = '';
   customers: any[] = [];
   displayedColumns: string[] = ['CustomerName', 'DBName', 'ConnectionString', 'ClientId', 'actions'];
-  apiUrl = 'http://192.168.1.4/ConfigApi/api/Service/SQLLOADEXEC';
+  apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/SQLLOADEXEC';
   storedProcedureName = '[dbo].[sp_select_DBConfig]';
   isLoggedIn :boolean  =true;
   loggedInUser:any =''
@@ -71,7 +71,7 @@ export class DbconfigComponent {
 
     });
   }
-  goBack() {
+  goBackToMain(){
     this.router.navigate(['/mainpage']);
   }
   loadCustomers() {
@@ -97,18 +97,18 @@ export class DbconfigComponent {
 
     const requestData = {
         jsonFileparams: JSON.stringify([{ CustID: id.toString() }]),
-        spname: "[dbo].[sp_Delete_Customer]"
+        spname: "[dbo].[sp_Delete_DBConfig]"
     };
 
-    const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/GENERICSQLEXEC';
+    const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/GENERICSQLEXEC';
 
     this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
         response => {
             console.log("API Response:", response);
-            this.loadCustomers();
 
             if (response.trim().toLowerCase() === "success") {
                 alert('Customer Deleted Successfully'); 
+                this.loadCustomers();
                 this.customers = this.customers.filter(c => c.CustID !== id);
             } else {
                 alert('Failed to delete customer.'); 
@@ -171,53 +171,30 @@ onSearch(event: Event): void {
   toggleEdit(customer: any) {
     if (customer.isEditing) {
         // Validate CustID before sending request
-        if (!customer.CustID) {
-            alert("Error: Customer ID is missing.");
-            return;
-        }
+       
 
         // Construct request data with ordered parameters
         const requestData = {
             JSONFileparams: JSON.stringify([
                 {
-                    LicenseType: customer.LicenseType || null,
-                    CustName: customer.CustName || '',
-                    Address: customer.Address || '',
-                    Phone: customer.Phone || '',
-                    Email: customer.Email || '',
-                    City: customer.City || '',
-                    State: customer.State || '',
-                    Country: customer.Country || '',
-                    Zip: customer.Zip || '',
-                    CustomerType: customer.CustomerType || '',
-                    CAbbreviation: customer.CAbbreviation || '',
-                    ContactFPerson: customer.ContactFPerson || '',
-                    ContactFEmail: customer.ContactFEmail || '',
-                    ContactSPerson: customer.ContactSPerson || '',
-                    ContactSEmail: customer.ContactSEmail || '',
-                    Notes: customer.Notes || '',
-                    Document1: customer.Document1 || '',
-                    Document2: customer.Document2 || '',
-                    Document3: customer.Document3 || '',
-                    Document4: customer.Document4 || '',
-                    Document5: customer.Document5 || '',
-                    UpdatedBy: customer.UpdatedBy || '',
-                    // Status: customer.Status || '',
-                    CustID: customer.CustID.toString() 
+                  DBName: customer.DBName || null,
+                  ClientId: customer.ClientId || '',
+                 
                 }
             ]),
-            spname: "[dbo].[sp_Update_Customer]"
-        };
+            spname: "[dbo].[sp_Update_DBConfig]"
+        }; 
 
         console.log("Request Payload:", JSON.stringify(requestData, null, 2)); // Debugging output
 
-        const apiUrl = 'http://103.199.163.162/ConfigApi/api/Service/GENERICSQLEXEC';
+        const apiUrl = 'https://semarsconfigapi.azurewebsites.net/api/Service/GENERICSQLEXEC';
 
         this.http.post(apiUrl, requestData, { responseType: 'text' }).subscribe(
             response => {
                 console.log("Update Response:", response);
                 if (response.trim().toLowerCase() === "success") {
                     alert('Customer updated successfully');
+                    this.loadCustomers();
                     customer.isEditing = false;
                 } else {
                     alert('Failed to update customer.');
